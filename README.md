@@ -48,9 +48,9 @@ Execução em Docker, dentro da AWS Cloud.
 ## Entrega
 
 - **O trabalho deve ser feito em grupos de três ou quatro pessoas**;
-- Criar um repositório no Github;
+- Criar branch no padrão `grupo-n` no repositório da sprint;
 - Conferir se a API desejada já não foi escolhida por outra equipe;
-- Subir o trabalho no repositório da equipe com um README.md:
+- Subir o trabalho na branch da equipe com um README.md:
   - documentar detalhes sobre como a avaliação foi desenvolvida;
   - relatar dificuldades conhecidas;
   - descrever como utilizar o sistema;
