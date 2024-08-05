@@ -6,6 +6,6 @@ Autores: Giovanna Gutierrez, Gustavo Gutierrez, João Henrique de Oliveira, Joã
 ---
 # Tecnologias Utilizadas no projeto
 
-![tecnologias](https://skillicons.dev/icons?i=nodejs,aws,docker&perline=8)
+![tecnologias](https://skillicons.dev/icons?i=nodejs,aws,docker,express&perline=8)
 
 ---
