@@ -44,7 +44,10 @@ exports.spotifyCallback = async (req, res) => {
         const accessToken = response.data.access_token;
         const refreshToken = response.data.refresh_token;
 
-        res.render("home", { accessToken, refreshToken });
+        req.session.accessToken = accessToken;
+        req.session.refreshToken = refreshToken;
+
+        res.redirect('/home');
     } catch(err) {
         console.error(err);
         res.status(500).send('Internal Server Error');

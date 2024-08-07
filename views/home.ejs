@@ -1,11 +1,22 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/src/images/spotify logo.svg" type="image/x-icon">
+    <title>Spotify API</title>
 </head>
-<body>
-    <h1>OK</h1>
+<body class="selection:bg-[#20d46573]">
+
+    <div class="bg-transparent flex h-64 w-full flex-col items-center mt-10 mx-auto p-10">
+        <img src="<%= data.images[1].url %>" class="w-24 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
+        <p class="text-white mb-3 text-xs border-[#ffffff4b] border-[1px] p-2 rounded-2xl">Followers: <%= data.followers.total %></p>
+        <p class="text-white text-center font-bold text-xl">Bem-vindo de volta, <%= data.display_name %>!</p>
+    </div>
+
+    <footer class="absolute bottom-2 text-[#ffffff23] left-2 select-none">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
+    <script src="/src/scripts/script.js"></script>
 </body>
 </html>
