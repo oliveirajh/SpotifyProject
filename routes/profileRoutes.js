@@ -3,4 +3,6 @@ const router = express.Router();
 const profileController = require('../controllers/profileController');
 const verifyToken = require('../middlewares/verifyToken');
 
-router.get("/profile/tops",verifyToken, profileController.tops);
+router.get("/tops",verifyToken, profileController.tops);
+
+module.exports = router;
