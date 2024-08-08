@@ -20,12 +20,17 @@ exports.home = async (req, res) => {
             }
         });
 
+        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
         res.render('home', { 
             data: userData.data,
+            currentTrack: currentTrack.data
         });
     } catch (error) {
-        res.render('error', {
-            error: "You need to log in again"
-        });
+        res.send(error);
     }
 };
