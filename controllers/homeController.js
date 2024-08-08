@@ -10,7 +10,7 @@ exports.home = async (req, res) => {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
         });
-        
+
         const genre_seeds = await axios.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
@@ -31,7 +31,7 @@ exports.home = async (req, res) => {
 
         const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
             headers: {
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${req.session.accessToken}`
             }
         });
 
