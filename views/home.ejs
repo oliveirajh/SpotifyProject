@@ -19,6 +19,23 @@
         <p class="text-white mb-3 text-xs border-[#ffffff4b] border-[1px] p-2 rounded-2xl">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-xl">Bem-vindo de volta, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
     </div>
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 px-10 bg-transparent justify-around h-64 items-center mx-auto">
+        <div class="bg-[#262626] h-[75%] rounded-lg p-2">
+            <h2 class="text-white font-semibold">Músicas Tocadas recentemente</h2>
+            <div class="flex justify-around py-2">
+            <% recentTracks.items.forEach((item) => {%>
+                <div class="text-center flex flex-col justify-center items-center">
+                    <img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg" alt="Album cover">
+                    <p class="text-white"><%= item.track.name %></p>
+                    <p class="text-white text-xs"><%= item.track.artists[0].name %></p>
+                </div>
+            <% }) %>
+            </div>
+        </div>
+        <div class="bg-[#262626] h-[75%] rounded-lg p-2">
+            <h2 class="text-white font-semibold">Playlist Recomendadas</h2>
+        </div>
+    </div>
 
         <!-- Current Track Card -->
         <% if (currentTrack) {%>
@@ -34,7 +51,7 @@
                     <p class="text-[#ffffff65] text-sm hover:text-white inline-block">
                         <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
                         <% if (index < currentTrack.item.album.artists.length - 1) { %>
-                            ,
+                            
                         <% } %>
                     </p>
                 <% }) %>
