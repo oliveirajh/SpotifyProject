@@ -51,6 +51,20 @@
         </div>
         <div class="bg-[#262626] h-[75%] rounded-lg p-5 lg:w-[500px]">
             <h2 class="text-white font-semibold">Recommended playlists</h2>
+            <div class="flex justify-around py-3">
+                <% playlist.items.forEach((item) => {%>
+                    <div class="text-center flex flex-col justify-center items-center">
+                        <img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover">
+                        <% if (item.name.length > 10)  {%>
+                            <p class="text-white text-xs"><%= item.name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-white
+                            text-xs"><%= item.name %></p>
+                        <% } %>
+                    </div>
+                <% }) %>
+                </div>
+            </div>
         </div>
     </div>
 
