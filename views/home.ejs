@@ -63,39 +63,41 @@
 
     <!-- Current Track Card -->
     <% if (currentTrack) {%>
-        <div class="flex flex-col items-center lg:block bg-[#ffffff0e] right-5 bottom-5 p-5 fixed rounded-md">
-            <p class="text-white text-xs lg:text-lg font-bold mb-2">Last song played</p>
+        <div class="flex flex-row items-center lg:block lg:bg-[#ffffff0e] bg-[#444444f4] right-2 bottom-3 p-2 lg:p-5 fixed rounded-md">
+            <p class="text-white lg:block hidden text-xs lg:text-lg font-bold mb-2">Last song played</p>
             <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
-                <img id="track-image" class="lg:h-48 h-20 rounded-md" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
+                <img id="track-image" class="lg:h-48 h-14 rounded-md lg:m-0 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
             </a>
 
-            <% if (currentTrack.item.name.length > 15) { %>
-                <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
-                    <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name.substring(0, 10) + '...' %></a>
-                </p>
-            <% } else { %>
-                <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
-                    <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
-                </p>
-            <% } %>
-
-            <% if (currentTrack.item.album.artists.length > 1) { %>
-                <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                    <% currentTrack.item.album.artists.forEach((artist, index) => { %>
-                        <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
-                        <% if (index < currentTrack.item.album.artists.length - 1) { %>,<% } %>
-                    <% }) %>
-                </p>
-            <% } else { %>
-                <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                    <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name %></a>
-                </p>
-            <% } %>
+            <div class="flex flex-col">
+                <% if (currentTrack.item.name.length > 15) { %>
+                    <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
+                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name.substring(0, 10) + '...' %></a>
+                    </p>
+                <% } else { %>
+                    <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
+                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
+                    </p>
+                <% } %>
+    
+                <% if (currentTrack.item.album.artists.length > 1) { %>
+                    <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
+                        <% currentTrack.item.album.artists.forEach((artist, index) => { %>
+                            <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
+                            <% if (index < currentTrack.item.album.artists.length - 1) { %>,<% } %>
+                        <% }) %>
+                    </p>
+                <% } else { %>
+                    <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
+                        <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name %></a>
+                    </p>
+                <% } %>
+            </div>
         </div>
     <% }; %>
 
 
-    <footer class="absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
+    <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
     <script src="/src/scripts/homeScript.js"></script>
 </body>
 </html>
