@@ -11,16 +11,11 @@ exports.home = async (req, res) => {
             }
         });
 
-        const genre_seeds = await axios.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
+        const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?limit=3&offset=3`, {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
-        });
-
-        const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/recommendations?seed_genres=${genre_seeds}`, {
-            headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
-            }
+        
         });
 
         const recentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=3', {
@@ -37,7 +32,7 @@ exports.home = async (req, res) => {
 
         res.render('home', { 
             data: userData.data,
-            playlist: recomendPlaylist.data,
+            playlist: recomendPlaylist.data.playlists,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data
         });
