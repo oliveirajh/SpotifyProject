@@ -16,7 +16,7 @@
 
     <div class="bg-transparent flex h-64 w-full flex-col items-center mt-10 mx-auto p-10">
         <img src="<%= data.images[1].url %>" class="w-24 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
-        <p class="text-white mb-3 text-xs border-[#ffffff4b] border-[1px] p-2 rounded-2xl">Followers: <%= data.followers.total %></p>
+        <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
     </div>
     <div class="lg:flex gap-6 px-10 bg-transparent justify-center h-64 mx-auto">
