@@ -10,18 +10,18 @@
 </head>
 <body class="selection:bg-[#20d46573]">
 
-    <div id="navbar">
+    <div id="navbar" class="flex justify-between">
         <form action="logout" method="get">
             <button><button class="text-black font-[500] bg-[#20d464] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Logout</button>
         </form>
 
         <form action="/search" method="get">
-            <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white rounded-xl focus:outline-none pl-2 m-5" placeholder="Search for a song, artist or album">
-            <button class="text-white font-[500] bg-transparent py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Search</button>
+            <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white focus:outline-none pl-2 w-[300px]" placeholder="Search for a song, artist or album">
+            <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Search</button>
         </form>
     </div>
 
-    <div class="bg-transparent flex h-64 w-full flex-col items-center mt-10 mx-auto p-10">
+    <div class="bg-transparent flex h-64 w-full flex-col items-center mt-5 mx-auto p-10">
         <img src="<%= data.images[1].url %>" class="w-24 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
