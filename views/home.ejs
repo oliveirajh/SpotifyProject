@@ -22,7 +22,7 @@
     </div>
 
     <div class="bg-transparent flex h-64 w-full flex-col items-center mt-5 mx-auto p-10">
-        <img src="<%= data.images[1].url %>" class="w-24 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
+        <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
     </div>
@@ -70,7 +70,7 @@
 
     <!-- Current Track Card -->
     <% if (currentTrack) {%>
-        <div class="flex flex-row items-center lg:block lg:bg-[#ffffff0e] bg-[#444444f4] right-2 bottom-3 p-2 lg:p-5 fixed rounded-md">
+        <div class="flex flex-row items-center lg:block lg:bg-[#ffffff0e] bg-[#444444f4] right-3 bottom-5 p-2 lg:p-5 fixed rounded-md">
             <p class="text-white lg:block hidden text-xs lg:text-lg font-bold mb-2">Last song played</p>
             <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
                 <img id="track-image" class="lg:h-48 h-14 rounded-md lg:m-0 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
