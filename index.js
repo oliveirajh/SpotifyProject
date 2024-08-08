@@ -32,7 +32,12 @@ const homeRoutes = require('./routes/homeRoutes');
 
 app.use('/login', loginRoutes);
 
-app.use('/home', homeRoutes)
+app.use('/home', homeRoutes);
+
+app.use('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
+});
 
 app.get("/", (req, res) => {
     res.render("index");

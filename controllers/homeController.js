@@ -14,18 +14,18 @@ exports.home = async (req, res) => {
     }
 
     try {
-        const response = await axios.get('https://api.spotify.com/v1/me', {
+        const userData = await axios.get('https://api.spotify.com/v1/me', {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        console.log(response.data);
-
         res.render('home', { 
-            data: response.data
+            data: userData.data,
         });
     } catch (error) {
-        console.error('Error fetching user profile:', error);
+        res.render('error', {
+            error: "You need to log in again"
+        });
     }
 };
