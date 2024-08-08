@@ -1,12 +1,12 @@
 function verifyToken(req, res, next){
-    const refreshToken = req.session.refresh_token;
-    const accessToken = req.session.access_token;
+    const accessToken = req.session.accessToken;
+    const refreshToken = req.session.refreshToken;
 
     if (!accessToken || !refreshToken) {
         res.status(401).send('You need to be logged in');
+    }else{
+        next();
     }
-
-    next();
 }
 
-export default verifyToken;
+module.exports = verifyToken;
