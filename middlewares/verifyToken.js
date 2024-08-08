@@ -3,7 +3,9 @@ function verifyToken(req, res, next){
     const refreshToken = req.session.refreshToken;
 
     if (!accessToken || !refreshToken) {
-        res.status(401).send('You need to be logged in');
+        res.render('index', {
+            error: "You need to login first"
+        });
     }else{
         next();
     }
