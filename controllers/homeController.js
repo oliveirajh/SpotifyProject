@@ -10,7 +10,7 @@ exports.home = async (req, res) => {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
         });
-
+        
         const genre_seeds = await axios.get('https://api.spotify.com/v1/recommendations/available-genre-seeds', {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
@@ -29,14 +29,19 @@ exports.home = async (req, res) => {
             }
         });
 
+        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            }
+        });
+
         res.render('home', { 
             data: userData.data,
             playlist: recomendPlaylist.data,
-            recentTracks: recentTracks.data
+            recentTracks: recentTracks.data,
+            currentTrack: currentTrack.data
         });
     } catch (error) {
-        res.render('error', {
-            error: "You need to log in again"
-        });
+        res.send(error);
     }
 };
