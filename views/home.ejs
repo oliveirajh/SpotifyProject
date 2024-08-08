@@ -37,28 +37,27 @@
         </div>
     </div>
 
-        <!-- Current Track Card -->
-        <% if (currentTrack) {%>
-            <div class="bg-[#ffffff0e] right-5 bottom-5 p-5 fixed rounded-md">
-
-                <p class="text-white text-lg font-bold mb-2">Now Playing</p>
-
-                <a href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank"><img class="h-56 rounded-md" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image"></a>
-
-                <p class="text-white text-sm font-bold mt-3 hover:underline"><a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a></p>
-
+    <!-- Current Track Card -->
+    <% if (currentTrack) {%>
+        <div class="bg-[#ffffff0e] right-5 bottom-5 p-5 fixed rounded-md">
+            <p class="text-white text-lg font-bold mb-2">Now Playing</p>
+            <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
+                <img id="track-image" class="h-56 rounded-md" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
+            </a>
+            <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
+                <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
+            </p>
+            <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
                 <% currentTrack.item.album.artists.forEach((artist, index) => { %>
-                    <p class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                        <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
-                        <% if (index < currentTrack.item.album.artists.length - 1) { %>
-                            
-                        <% } %>
-                    </p>
+                    <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
+                    <% if (index < currentTrack.item.album.artists.length - 1) { %>,<% } %>
                 <% }) %>
-            </div>
-        <% }; %>
+            </p>
+        </div>
+    <% }; %>
+
 
     <footer class="absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
-    <script src="/src/scripts/script.js"></script>
+    <script src="/src/scripts/homeScript.js"></script>
 </body>
 </html>
