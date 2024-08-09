@@ -1,0 +1,20 @@
+{
+  "name": "sprints-2-3-pb-aws-julho-a",
+  "version": "1.0.0",
+  "description": "Projeto feito durante as sprints 2 e 3 do Programa de Bolsas AI/ML Compasso UOL",
+  "main": "index.js",
+  "scripts": {
+    "dev": "nodemon index.js",
+    "update": "npm i"
+  },
+  "author": "Giovanna Gutierrez, Gustavo Gutierrez, João Henrique de Oliveira e João Victor Ferrari de Melo",
+  "license": "ISC",
+  "dependencies": {
+    "axios": "^1.7.3",
+    "body-parser": "^1.20.2",
+    "dotenv": "^16.4.5",
+    "ejs": "^3.1.10",
+    "express": "^4.19.2",
+    "express-session": "^1.18.0"
+  }
+}
