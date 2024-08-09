@@ -1,0 +1,49 @@
+const currentTrack = document.querySelector('#currentTrack');
+const currentTrackImg = document.querySelector('#track-image');
+const trackName = document.querySelector('#track-name');
+
+currentTrack.addEventListener('mouseover', () => {
+    currentTrackImg.classList.remove('lg:h-14', 'lg:mr-3');
+    trackName.classList.remove('text-sm');
+
+    currentTrackImg.classList.add('mx-auto', 'lg:h-48', 'lg:mx-auto');
+    trackName.classList.add('text-base');
+
+    currentTrackImg.style.transition = `all 0.7s ease-in-out`;
+    currentTrackImg.style.transitionDelay = '0s';
+});
+
+currentTrack.addEventListener('mouseout', () => {
+    currentTrackImg.classList.remove('lg:h-48', 'lg:mx-auto');
+    trackName.classList.remove('text-base');
+
+    currentTrackImg.classList.add('lg:h-14', 'lg:mr-3');
+    trackName.classList.add('text-sm');
+
+    currentTrackImg.style.transition = `all 0.7s ease-in-out`;
+    currentTrackImg.style.transitionDelay = '0.2s';
+});
+
+const updateCurrentTrack = async () => {
+    try {
+        const response = await fetch('home/current-track');
+        const data = await response.json();
+
+        if (data && data.item) {
+            document.getElementById('track-url').href = data.item.album.external_urls.spotify;
+            document.getElementById('track-image').src = data.item.album.images[0].url;
+            document.getElementById('track-name').innerHTML = data.item.name.length > 20
+                ? `<a href="${data.item.external_urls.spotify}" target="_blank">${data.item.name.substring(0, 20) + '...'}</a>`
+                : `<a href="${data.item.external_urls.spotify}" target="_blank">${data.item.name}</a>`;
+            document.getElementById('track-artists').innerHTML = data.item.album.artists.length > 1
+                ? data.item.album.artists.map((artist, index) =>
+                    `<a href="${artist.external_urls.spotify}" target="_blank">${artist.name}</a>${index < data.item.album.artists.length - 1 ? ',' : ''}`
+                ).join(' ')
+                : `<a href="${data.item.album.artists[0].external_urls.spotify}" target="_blank">${data.item.album.artists[0].name}</a>`;
+        }
+    } catch (error) {
+        console.error('Error fetching current track:', error);
+    }
+};
+
+setInterval(updateCurrentTrack, 5000);

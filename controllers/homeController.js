@@ -11,14 +11,14 @@ exports.home = async (req, res) => {
             }
         });
 
-        const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?limit=3&offset=3`, {
+        const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?limit=4&offset=3`, {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
         
         });
 
-        const recentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=3', {
+        const recentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=4  ', {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
@@ -40,3 +40,36 @@ exports.home = async (req, res) => {
         res.send(error);
     }
 };
+
+exports.getCurrentTrack = async (req, res) => {
+    try {
+        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: {
+                'Authorization': `Bearer ${req.session.accessToken}`
+            }
+        });
+
+        res.json(currentTrack.data);
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
+
+
+exports.search = async (req, res) => {
+    try {
+        const search = await axios.get(`https://api.spotify.com/v1/search?q=${req.body.search}&type=track&limit=30`, {
+            headers: {
+                'Authorization': `Bearer ${req.session.accessToken}`
+            }
+        });
+
+        console.log(search.data.tracks.items[0]);
+
+        res.render('search', { data: search.data, search: req.body.search });
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
