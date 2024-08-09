@@ -30,12 +30,15 @@ const PORT = process.env.PORT || 3000;
 const loginRoutes = require('./routes/loginRoutes');
 const homeRoutes = require('./routes/homeRoutes');
 const profileRoutes = require('./routes/profileRoutes');
+const searchRoutes = require('./routes/searchRoutes');
 
 app.use('/login', loginRoutes);
 
 app.use('/home', homeRoutes);
 
 app.use('/profile', profileRoutes);
+
+app.use('/search', searchRoutes);
 
 app.use('/logout', (req, res) => {
     req.session.destroy();

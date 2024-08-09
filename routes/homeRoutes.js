@@ -4,7 +4,6 @@ const homeController = require('../controllers/homeController');
 const verifyToken = require('../middlewares/verifyToken');
 
 router.get("/",verifyToken, homeController.home);
-router.post('/search', homeController.search);
-router.get('/current-track', homeController.getCurrentTrack);
+router.get('/current-track',verifyToken, homeController.getCurrentTrack);
 
 module.exports = router;
