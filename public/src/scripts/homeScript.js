@@ -24,6 +24,8 @@ currentTrack.addEventListener('mouseout', () => {
     currentTrackImg.style.transitionDelay = '0s';
 });
 
+
+
 const updateCurrentTrack = async () => {
     try {
         const response = await fetch('home/current-track');
@@ -40,10 +42,20 @@ const updateCurrentTrack = async () => {
                     `<a href="${artist.external_urls.spotify}" target="_blank">${artist.name}</a>${index < data.item.album.artists.length - 1 ? ',' : ''}`
                 ).join(' ')
                 : `<a href="${data.item.album.artists[0].external_urls.spotify}" target="_blank">${data.item.album.artists[0].name}</a>`;
+
+            const totalTime = data.item.duration_ms;
+            const currentTime = data.progress_ms;
+            const progressPercentage = (currentTime / totalTime) * 100;
+
+            document.getElementById('track-progress').style.width = `${progressPercentage}%`;
+
+            document.getElementById('current-time').textContent = `${Math.floor(currentTime / 60000)}:${('0' + Math.floor((currentTime % 60000) / 1000)).slice(-2)}`;
+            document.getElementById('total-time').textContent = `${Math.floor(totalTime / 60000)}:${('0' + Math.floor((totalTime % 60000) / 1000)).slice(-2)}`;
         }
     } catch (error) {
         console.error('Error fetching current track:', error);
     }
 };
 
-setInterval(updateCurrentTrack, 5000);
+
+setInterval(updateCurrentTrack, 500);

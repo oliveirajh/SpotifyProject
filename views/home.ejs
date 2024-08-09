@@ -77,32 +77,28 @@
             <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
                 <img id="track-image" class="lg:h-14 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
             </a>
-
+        
             <div class="flex flex-col justify-center items-start">
-                <% if (currentTrack.item.name.length > 20) { %>
-                    <p id="track-name" class="text-white text-sm font-bold hover:underline">
-                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name.substring(0, 20) + '...' %></a>
-                    </p>
-                <% } else { %>
-                    <p id="track-name" class="text-white text-sm font-bold mt-3 hover:underline">
-                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
-                    </p>
-                <% } %>
-            
-                <% if (currentTrack.item.album.artists.length > 1) { %>
-                    <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                        <% currentTrack.item.album.artists.forEach((artist, index) => { %>
-                            <a href="<%= artist.external_urls.spotify %>" target="_blank"><%= artist.name %></a>
-                            <% if (index < currentTrack.item.album.artists.length - 1) { %>,<% } %>
-                        <% }) %>
-                    </p>
-                <% } else { %>
-                    <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                        <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name %></a>
-                    </p>
-                <% } %>
-            </div>                        
+                <p id="track-name" class="text-white text-sm font-bold hover:underline">
+                    <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
+                </p>
+                <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
+                    <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name %></a>
+                </p>
+        
+                <!-- Player progress bar -->
+                <div class="w-full bg-[#ffffff1a] rounded-full h-1.5 mt-3">
+                    <div id="track-progress" class="bg-[#20d465] h-1.5 rounded-full" style="width: 0%;"></div>
+                </div>
+        
+                <!-- Player timing -->
+                <div class="flex justify-between w-full mt-1 text-sm">
+                    <span id="current-time" class="text-white">0:00</span>
+                    <span id="total-time" class="text-[#ffffff65]"><%= Math.floor(currentTrack.item.duration_ms / 60000) %>:<%= ('0' + Math.floor((currentTrack.item.duration_ms % 60000) / 1000)).slice(-2) %></span>
+                </div>
+            </div>
         </div>
+        
     <% }; %>
 
 
