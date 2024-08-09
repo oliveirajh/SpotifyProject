@@ -65,8 +65,6 @@ exports.search = async (req, res) => {
             }
         });
 
-        console.log(search.data.tracks.items[0]);
-
         res.render('search', { data: search.data, search: req.body.search });
 
     } catch (error) {

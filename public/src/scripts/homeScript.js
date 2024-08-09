@@ -21,7 +21,7 @@ currentTrack.addEventListener('mouseout', () => {
     trackName.classList.add('text-sm');
 
     currentTrackImg.style.transition = `all 0.7s ease-in-out`;
-    currentTrackImg.style.transitionDelay = '0.2s';
+    currentTrackImg.style.transitionDelay = '0s';
 });
 
 const updateCurrentTrack = async () => {
