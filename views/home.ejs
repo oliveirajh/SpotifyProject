@@ -75,7 +75,7 @@
         <div class="lg:flex transition-all items-center lg:hover:block lg:bg-[#ffffff0e] bg-[#444444f4] lg:right-3 lg:bottom-5 hidden lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464]" id="currentTrack">
             <p class="text-white lg:hidden hidden text-xs lg:text-lg font-bold mb-0">Last song played</p>
             <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
-                <img id="track-image" class="lg:h-20 lg:w-28 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
+                <img id="track-image" class="lg:h-24 lg:w-32 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
             </a>
         
             <div class="flex flex-col justify-center items-start w-full ml-2" id="track-info">
