@@ -30,6 +30,7 @@
     
     <div class="lg:flex gap-6 lg:px-10 px-0 bg-transparent justify-center h-64 mx-auto w-fit">
         
+        
         <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 mb-5 lg:w-[500px] w-full">
             <h2 class="text-white font-semibold">Recent tracks</h2>
             <div class="flex justify-around py-3 gap-3">
@@ -66,6 +67,13 @@
                     </div>
                 <% }) %>
                 </div>
+            </div>
+        </div>
+        <!-- Card de Minutos Escutados no Mês -->
+        <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 lg:w-[800px] w-full mx-auto">
+            <h2 class="text-white font-semibold">Minutes Listened This Month</h2>
+            <div class="flex justify-center items-center py-3">
+                <p class="text-white text-xl font-bold"><%= totalMinutes %> minutes</p>
             </div>
         </div>
     </div>
