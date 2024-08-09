@@ -6,7 +6,7 @@ currentTrack.addEventListener('mouseover', () => {
     currentTrackImg.classList.remove('lg:h-14', 'lg:mr-3');
     trackName.classList.remove('text-sm');
 
-    currentTrackImg.classList.add('mx-auto', 'lg:h-48', 'lg:mx-auto');
+    currentTrackImg.classList.add('mx-auto', 'lg:h-48', 'lg:mx-auto', "lg:mb-3");
     trackName.classList.add('text-base');
 
     currentTrackImg.style.transition = `all 0.7s ease-in-out`;
@@ -14,10 +14,10 @@ currentTrack.addEventListener('mouseover', () => {
 });
 
 currentTrack.addEventListener('mouseout', () => {
-    currentTrackImg.classList.remove('lg:h-48', 'lg:mx-auto');
+    currentTrackImg.classList.remove('lg:h-48', 'lg:mx-auto', "lg:mb-3");
     trackName.classList.remove('text-base');
 
-    currentTrackImg.classList.add('lg:h-14', 'lg:mr-3');
+    currentTrackImg.classList.add('lg:h-20', 'lg:mr-3');
     trackName.classList.add('text-sm');
 
     currentTrackImg.style.transition = `all 0.7s ease-in-out`;
