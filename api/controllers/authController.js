@@ -6,17 +6,18 @@ dotenv.config();
 
 exports.spotifyLogin = (req, res) => {
     try {
-        const scope = 'user-read-private user-read-email user-read-currently-playing user-top-read playlist-read-collaborative playlist-read-private user-follow-read user-library-read user-read-recently-played';
+        const scopes = 'user-read-private user-read-email user-read-currently-playing user-top-read playlist-read-collaborative playlist-read-private user-follow-read user-library-read user-read-recently-played';
         const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
         const clientId = process.env.SPOTIFY_CLIENT_ID;
 
         res.redirect('https://accounts.spotify.com/authorize?' +
             querystring.stringify({
                 response_type: 'code',
-                client_id: client_id,
+                client_id: clientId,
                 scope: scopes,
-                redirect_uri: redirect_uri,
-            }));
+                redirect_uri: redirectUri,
+        }));
+        
     } catch(err) {
         console.error(err);
         res.status(500).send('Internal Server Error');
