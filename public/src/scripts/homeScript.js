@@ -24,8 +24,6 @@ currentTrack.addEventListener('mouseout', () => {
     currentTrackImg.style.transitionDelay = '0s';
 });
 
-
-
 const updateCurrentTrack = async () => {
     try {
         const response = await fetch('home/current-track');
@@ -58,4 +56,4 @@ const updateCurrentTrack = async () => {
 };
 
 
-setInterval(updateCurrentTrack, 500);
+setInterval(updateCurrentTrack, 1000);
