@@ -4,7 +4,7 @@ const trackName = document.querySelector('#track-name');
 const trackInfo = document.querySelector('#track-info');
 
 currentTrack.addEventListener('mouseover', () => {
-    currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-32');
+    currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.remove('text-sm');
     trackInfo.classList.remove('w-full', 'items-start');
 
@@ -21,7 +21,7 @@ currentTrack.addEventListener('mouseout', () => {
     trackName.classList.remove('text-base');
     trackInfo.classList.remove('items-center');
 
-    currentTrackImg.classList.add('lg:h-24', 'lg:mr-3', 'lg:w-32');
+    currentTrackImg.classList.add('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.add('text-sm', 'items-start');
     trackInfo.classList.add('w-full');
 
