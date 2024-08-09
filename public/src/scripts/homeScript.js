@@ -1,26 +1,31 @@
 const currentTrack = document.querySelector('#currentTrack');
 const currentTrackImg = document.querySelector('#track-image');
 const trackName = document.querySelector('#track-name');
+const trackInfo = document.querySelector('#track-info');
 
 currentTrack.addEventListener('mouseover', () => {
-    currentTrackImg.classList.remove('lg:h-14', 'lg:mr-3');
+    currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.remove('text-sm');
+    trackInfo.classList.remove('w-full', 'items-start');
 
     currentTrackImg.classList.add('mx-auto', 'lg:h-48', 'lg:mx-auto', "lg:mb-3");
     trackName.classList.add('text-base');
+    trackInfo.classList.add('items-center');
 
-    currentTrackImg.style.transition = `all 0.7s ease-in-out`;
+    currentTrackImg.style.transition = `all 0.2s ease-in-out`;
     currentTrackImg.style.transitionDelay = '0s';
 });
 
 currentTrack.addEventListener('mouseout', () => {
     currentTrackImg.classList.remove('lg:h-48', 'lg:mx-auto', "lg:mb-3");
     trackName.classList.remove('text-base');
+    trackInfo.classList.remove('items-center');
 
-    currentTrackImg.classList.add('lg:h-20', 'lg:mr-3');
-    trackName.classList.add('text-sm');
+    currentTrackImg.classList.add('lg:h-24', 'lg:mr-3', 'lg:w-36');
+    trackName.classList.add('text-sm', 'items-start');
+    trackInfo.classList.add('w-full');
 
-    currentTrackImg.style.transition = `all 0.7s ease-in-out`;
+    currentTrackImg.style.transition = `all 0s ease-in-out`;
     currentTrackImg.style.transitionDelay = '0s';
 });
 

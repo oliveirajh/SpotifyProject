@@ -11,9 +11,16 @@
 <body class="selection:bg-[#20d46573]">
 
     <div id="navbar" class="flex lg:justify-between justify-center">
-        <form action="logout" method="get">
-            <button class="text-black font-[500] bg-[#20d464] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Logout</button>
-        </form>
+        <div class="flex items-center">
+            <form action="logout" method="get">
+                <button class="text-black font-[500] bg-[#20d464] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Logout</button>
+            </form>
+            
+            <a href="/home">
+                <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo">
+            </a>
+            
+        </div>
 
         <form action="/search" method="post">
             <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white focus:outline-none lg:pl-2 pl-0 w-[180px] lg:w-[300px]" placeholder="Search for a song...">
@@ -21,19 +28,23 @@
         </form>
     </div>
 
-    <div class="bg-transparent flex h-64 flex-col items-center my-5 mx-auto p-10 w-fit">
+    <div class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-fit">
         <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
-        <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/favorites'">Favorites</button>
+        <button class="text-white font-[500] bg-[#4444447a] mt-5 py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/favorites'">Favorites</button>
     </div>
     
-    <div class="lg:flex gap-6 lg:px-10 px-0 bg-transparent justify-center h-64 mx-auto w-fit">
+    <div class="lg:flex gap-6 lg:px-10 px-0 bg-transparent justify-center h-64 mx-auto w-fit my-2">
         
+<<<<<<< HEAD
         
         <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 mb-5 lg:w-[500px] w-full">
+=======
+        <div class="bg-[#181818] lg:h-[75%] h-[85%] lg:rounded-lg rounded-none p-5 mb-5 lg:w-[500px] w-full">
+>>>>>>> 90431fb64b7cb7bfb1627ec549063015029e4a84
             <h2 class="text-white font-semibold">Recent tracks</h2>
-            <div class="flex justify-around py-3 gap-3">
+            <div class="flex justify-between py-3 gap-3">
             <% recentTracks.items.forEach((item) => {%>
                 <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
                     <a href="<%= item.track.external_urls.spotify %>" target="_blank"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
@@ -55,7 +66,7 @@
 
         <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 lg:w-[500px] w-full">
             <h2 class="text-white font-semibold">Recommended playlists</h2>
-            <div class="flex justify-around py-3">
+            <div class="flex justify-between py-3">
                 <% playlist.items.forEach((item) => {%>
                     <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
                         <a href="<%= item.external_urls.spotify %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
@@ -83,10 +94,10 @@
         <div class="lg:flex transition-all items-center lg:hover:block lg:bg-[#ffffff0e] bg-[#444444f4] lg:right-3 lg:bottom-5 hidden lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464]" id="currentTrack">
             <p class="text-white lg:hidden hidden text-xs lg:text-lg font-bold mb-0">Last song played</p>
             <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
-                <img id="track-image" class="lg:h-20 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
+                <img id="track-image" class="lg:h-24 lg:w-36 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
             </a>
         
-            <div class="flex flex-col justify-center items-start">
+            <div class="flex flex-col justify-center items-start w-full ml-2" id="track-info">
                 <p id="track-name" class="text-white text-sm font-bold hover:underline">
                     <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
                 </p>
