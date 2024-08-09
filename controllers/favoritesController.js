@@ -3,7 +3,7 @@ const dotenv = require('dotenv');
 
 dotenv.config();
 
-exports.topArtists = async (req, res) => {
+const getTopArtists = async (req, res) => {
     const accessToken = req.session.accessToken; // Supondo que o token esteja na sessão
 
     try {
@@ -12,14 +12,14 @@ exports.topArtists = async (req, res) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
-        res.send(response.data); // FRONT-END
+        return response.data;
     } catch (error) {
         console.error('Error fetching top artists:', error.message);
         res.status(error.response ? error.response.status : 500).render('error', { message: error.message });
     }
 }
 
-exports.topTracks = async (req, res) => {
+const getTopTracks = async (req, res) => {
     const accessToken = req.session.accessToken; // Supondo que o token esteja na sessão
 
     try {
@@ -28,9 +28,19 @@ exports.topTracks = async (req, res) => {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
-        res.send(response.data); // FRONT-END
+        return response.data;
     } catch (error) {
         console.error('Error fetching top tracks:', error.message);
         res.status(error.response ? error.response.status : 500).render('error', { message: error.message });
+    }
+}
+
+exports.getFavorites = async (req, res) => {
+    try{
+        const topArtists = await getTopArtists(req, res);
+        const topTracks = await getTopTracks(req, res);
+        res.render('favorites', { topArtists, topTracks });
+    }catch(error){
+        res.status(500).render('error', { message: error.message });
     }
 }

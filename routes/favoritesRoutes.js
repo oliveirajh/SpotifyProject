@@ -3,7 +3,6 @@ const router = express.Router();
 const favoritesController = require('../controllers/favoritesController');
 const verifyToken = require('../middlewares/verifyToken');
 
-router.get("/topArtists",verifyToken, favoritesController.topArtists);
-router.get("/topTracks",verifyToken, favoritesController.topTracks);
+router.get("/",verifyToken, favoritesController.getFavorites);
 
 module.exports = router;

@@ -21,48 +21,8 @@
         </form>
     </div>
 
-    <div class="bg-transparent flex h-32 flex-col items-center my-5 mx-auto p-10 w-fit">
-        <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
-        <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
-        <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
-        <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700">Favorites</button>
-    </div>
-    
-    
-
-    <!-- Current Track Card -->
-    <% if (currentTrack) {%>
-        <div class="lg:flex transition-all lg:hover:block lg:bg-[#ffffff0e] bg-[#444444f4] lg:right-3 lg:bottom-5 hidden lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464]" id="currentTrack">
-            <p class="text-white lg:hidden hidden text-xs lg:text-lg font-bold mb-0">Last song played</p>
-            <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
-                <img id="track-image" class="lg:h-14 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
-            </a>
-        
-            <div class="flex flex-col justify-center items-start">
-                <p id="track-name" class="text-white text-sm font-bold hover:underline">
-                    <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
-                </p>
-                <p id="track-artists" class="text-[#ffffff65] text-sm hover:text-white inline-block">
-                    <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name %></a>
-                </p>
-        
-                <!-- Player progress bar -->
-                <div class="w-full bg-[#ffffff1a] rounded-full h-1.5 mt-3">
-                    <div id="track-progress" class="bg-[#20d465] h-1.5 rounded-full" style="width: 0%;"></div>
-                </div>
-        
-                <!-- Player timing -->
-                <div class="flex justify-between w-full mt-1 text-sm">
-                    <span id="current-time" class="text-white">0:00</span>
-                    <span id="total-time" class="text-[#ffffff65]"><%= Math.floor(currentTrack.item.duration_ms / 60000) %>:<%= ('0' + Math.floor((currentTrack.item.duration_ms % 60000) / 1000)).slice(-2) %></span>
-                </div>
-            </div>
-        </div>
-        
-    <% }; %>
-
+    <div>Favorites</div>
 
     <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
-    <script src="/src/scripts/homeScript.js"></script>
 </body>
 </html>
