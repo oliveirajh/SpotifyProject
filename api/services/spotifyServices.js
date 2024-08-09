@@ -1,9 +1,12 @@
 const axios = require('axios');
 
-exports.getMyProfile = async (req, res) => {
+const getHeaders = (access_token) => (
+    {'Authorization': `Bearer ${access_token}`}
+)
+    
+
+exports.getMyProfile = async (access_token) => {
     return await axios.get("https://api.spotify.com/v1/me", {
-        headers: {
-            'Authorization': `Bearer ${req.query.access_token}`
-        }
+        headers: getHeaders(access_token)
     })
 }
