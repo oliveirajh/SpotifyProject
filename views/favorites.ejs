@@ -21,55 +21,14 @@
         </form>
     </div>
 
-    <div class="bg-transparent flex h-64 flex-col items-center my-5 mx-auto p-10 w-fit">
+    <div class="bg-transparent flex h-32 flex-col items-center my-5 mx-auto p-10 w-fit">
         <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
         <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700">Favorites</button>
     </div>
     
-    <div class="lg:flex gap-6 lg:px-10 px-0 bg-transparent justify-center h-64 mx-auto w-fit">
-        
-        <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 mb-5 lg:w-[500px] w-full">
-            <h2 class="text-white font-semibold">Recent tracks</h2>
-            <div class="flex justify-around py-3 gap-3">
-            <% recentTracks.items.forEach((item) => {%>
-                <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                    <a href="<%= item.track.external_urls.spotify %>" target="_blank"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
-                    <% if (item.track.name.length > 10)  {%>
-                        <p class="text-white text-xs"><%= item.track.name.substring(0, 10) + '...' %></p>
-                    <% } else { %>
-                        <p class="text-white text-xs"><%= item.track.name %></p>
-                    <% } %>
-                    
-                    <% if (item.track.artists[0].name.length > 10) { %>
-                        <p class="text-white text-xs"><%= item.track.artists[0].name.substring(0, 10) + '...' %></p>
-                    <% } else { %>
-                        <p class="text-white text-xs"><%= item.track.artists[0].name %></p>
-                    <% } %>
-                </div>
-            <% }) %>
-            </div>
-        </div>
-
-        <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 lg:w-[500px] w-full">
-            <h2 class="text-white font-semibold">Recommended playlists</h2>
-            <div class="flex justify-around py-3">
-                <% playlist.items.forEach((item) => {%>
-                    <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                        <a href="<%= item.external_urls.spotify %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
-                        <% if (item.name.length > 10)  {%>
-                            <p class="text-white text-xs"><%= item.name.substring(0, 10) + '...' %></p>
-                        <% } else { %>
-                            <p class="text-white
-                            text-xs"><%= item.name %></p>
-                        <% } %>
-                    </div>
-                <% }) %>
-                </div>
-            </div>
-        </div>
-    </div>
+    
 
     <!-- Current Track Card -->
     <% if (currentTrack) {%>

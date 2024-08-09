@@ -29,14 +29,14 @@ app.use(userSession);
 const PORT = process.env.PORT || 3000;
 const loginRoutes = require('./routes/loginRoutes');
 const homeRoutes = require('./routes/homeRoutes');
-const profileRoutes = require('./routes/profileRoutes');
+const profileRoutes = require('./routes/favoritesRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 
 app.use('/login', loginRoutes);
 
 app.use('/home', homeRoutes);
 
-app.use('/profile', profileRoutes);
+app.use('/favorites', profileRoutes);
 
 app.use('/search', searchRoutes);
 
