@@ -37,15 +37,15 @@
                 <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
                     <a href="<%= item.track.external_urls.spotify %>" target="_blank"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
                     <% if (item.track.name.length > 10)  {%>
-                        <p class="text-white text-xs"><%= item.track.name.substring(0, 10) + '...' %></p>
+                        <p class="text-white text-xs font-bold hover:underline"><%= item.track.name.substring(0, 10) + '...' %></p>
                     <% } else { %>
-                        <p class="text-white text-xs"><%= item.track.name %></p>
+                        <p class="text-white text-xs font-bold hover:underline"><%= item.track.name %></p>
                     <% } %>
                     
                     <% if (item.track.artists[0].name.length > 10) { %>
-                        <p class="text-white text-xs"><%= item.track.artists[0].name.substring(0, 10) + '...' %></p>
+                        <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.track.artists[0].name.substring(0, 10) + '...' %></p>
                     <% } else { %>
-                        <p class="text-white text-xs"><%= item.track.artists[0].name %></p>
+                        <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.track.artists[0].name %></p>
                     <% } %>
                 </div>
             <% }) %>
@@ -59,10 +59,9 @@
                     <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
                         <a href="<%= item.external_urls.spotify %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
                         <% if (item.name.length > 10)  {%>
-                            <p class="text-white text-xs"><%= item.name.substring(0, 10) + '...' %></p>
+                            <p class="text-white text-xs font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>
-                            <p class="text-white
-                            text-xs"><%= item.name %></p>
+                            <p class="text-white text-xs font-bold hover:underline"><%= item.name %></p>
                         <% } %>
                     </div>
                 <% }) %>
