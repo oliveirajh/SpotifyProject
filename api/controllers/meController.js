@@ -45,11 +45,12 @@ exports.getMyTopTracks = async (req, res) => {
         res.status(200).json(
             topTracks.data.items.map(track => ({
                 name: track.name,
-                artists: {
-                    names: track.artists.map(artist => artist.name),
-                    urls: track.artists.map(artist => artist.external_urls.spotify),
-                    hrefs: track.artists.map(artist => artist.href)
-                },
+                artists: track.artists.map(artist => {
+                    return {
+                        name: artist.name,
+                        url: artist.external_urls.spotify
+                    }
+                }),
                 album: {
                     name: track.album.name,
                     images: track.album.images,
