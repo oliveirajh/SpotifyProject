@@ -46,8 +46,9 @@ exports.getMyTopTracks = async (req, res) => {
             topTracks.data.items.map(track => ({
                 name: track.name,
                 artists: {
-                    name: track.artists.name,
-                    url: track.artists.external_urls.spotify
+                    names: track.artists.map(artist => artist.name),
+                    urls: track.artists.map(artist => artist.external_urls.spotify),
+                    hrefs: track.artists.map(artist => artist.href)
                 },
                 album: {
                     name: track.album.name,
