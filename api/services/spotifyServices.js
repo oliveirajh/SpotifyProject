@@ -37,3 +37,15 @@ exports.getMyTopTracks = async (access_token, limit = 5, offset = 0) => {
     })
 }
 
+exports.getSavedTracks = async(access_token, limit = 5, offset = 0) => {
+    const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString()
+    })
+
+    const url = `https://api.spotify.com/v1/me/tracks?${params.toString()}`;
+    return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+

@@ -1,5 +1,6 @@
 const axios = require('axios');
 const spotifyServices = require('../services/spotifyServices');
+const sendError = require('../utils/sendError');
 
 exports.getProfile = async (req, res) => {
     try{
@@ -14,8 +15,7 @@ exports.getProfile = async (req, res) => {
             images: profileData.data.images
         });
     }catch(err){
-        console.error(err);
-        res.status(500).send('Internal Server Error');
+        sendError(res,err);
     }
 }
 
@@ -34,7 +34,7 @@ exports.getMyTopArtists = async (req, res) => {
             }))
         );
     }catch(err){
-        res.status(500).send('Internal Server Error');
+        sendError(res,err);
     }
 }
 
@@ -62,7 +62,34 @@ exports.getMyTopTracks = async (req, res) => {
             }))
         );
     }catch(err){
-        console.error(err);
-        res.status(500).send('Internal Server Error');
+        sendError(res,err);
+    }
+}
+
+exports.getSavedTracks =  async (req,res) => {
+    try{
+        const { access_token, limit, offset } = req.query;
+        const savedTracks = await spotifyServices.getSavedTracks(access_token, limit, offset)
+        res.status(200).json(
+            savedTracks.data.items.map(track => ({
+                name: track.track.name,
+                artists: track.track.artists.map(artist => {
+                    return {
+                        name: artist.name,
+                        url: artist.external_urls.spotify
+                    }
+                }),
+                album: {
+                    name: track.track.album.name,
+                    images: track.track.album.images,
+                    url: track.track.album.external_urls.spotify,
+                },
+                duration: track.track.duration_ms,
+                popularity: track.track.popularity,
+                url: track.track.external_urls.spotify
+            }))
+        );
+    }catch(err){
+        sendError(res,err);
     }
 }
