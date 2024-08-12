@@ -21,8 +21,8 @@ exports.getProfile = async (req, res) => {
 
 exports.getMyTopArtists = async (req, res) => {
     try{
-        const { limit, offset } = req.query;
-        const topArtists = await spotifyServices.getMyTopArtists(req.query.access_token, limit, offset);
+        const { access_token, limit, offset } = req.query;
+        const topArtists = await spotifyServices.getMyTopArtists(access_token, limit, offset);
         res.status(200).json(
             topArtists.data.items.map(artist => ({
                 name: artist.name,
@@ -34,15 +34,14 @@ exports.getMyTopArtists = async (req, res) => {
             }))
         );
     }catch(err){
-        console.error(err);
         res.status(500).send('Internal Server Error');
     }
 }
 
 exports.getMyTopTracks = async (req, res) => {
     try{
-        const { limit, offset } = req.query;
-        const topTracks = await spotifyServices.getMyTopTracks(req.query.access_token, limit, offset);
+        const { access_token, limit, offset } = req.query;
+        const topTracks = await spotifyServices.getMyTopTracks(access_token, limit, offset);
         res.status(200).json(
             topTracks.data.items.map(track => ({
                 name: track.name,

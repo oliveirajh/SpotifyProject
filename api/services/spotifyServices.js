@@ -17,7 +17,7 @@ exports.getMyTopArtists = async (access_token, limit = 5, offset = 0) => {
         limit: limit.toString(),
         offset: offset.toString()
     });
-
+    
     const url = `https://api.spotify.com/v1/me/top/artists?${params.toString()}`;
     return await axios.get(url, {
         headers: getHeaders(access_token)
