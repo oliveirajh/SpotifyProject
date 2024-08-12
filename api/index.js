@@ -13,11 +13,11 @@ app.use(bodyParser.json());
 // Variables
 const PORT = process.env.PORT || 3000;
 const authRoutes = require('./routes/authRoutes');
-const profileRoutes = require('./routes/profileRoutes');
+const meRoutes = require('./routes/meRoutes');
 
 
 app.use('/auth', authRoutes);
-app.use('/profile', profileRoutes);
+app.use('/me', meRoutes);
 
 
 app.listen(PORT, () => {
