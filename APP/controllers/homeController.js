@@ -18,11 +18,7 @@ exports.index = async (req, res) => {
             }
         });
 
-<<<<<<< HEAD
          //Falta Implementar
-=======
-        //Falta Implementar
->>>>>>> aa5fa829f842a242c072d3e2c57b0c14032c0cf1
         const recentTracks = await axios.get(`${API_URL}/me/recently-played?limit=4`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -57,27 +53,12 @@ exports.index = async (req, res) => {
         }
 
         res.render('home',{
-<<<<<<< HEAD
-=======
             data: userData.data,
             playlist: recomendPlaylist.data.playlists,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
-            totalMinutes: getAllMinutes()
-        });
-        /*res.render('home', { 
->>>>>>> aa5fa829f842a242c072d3e2c57b0c14032c0cf1
-            data: userData.data,
-            playlist: recomendPlaylist.data.playlists,
-            recentTracks: recentTracks.data,
-            currentTrack: currentTrack.data,
-<<<<<<< HEAD
             totalMinutes: getAllMinutes()
         })
-=======
-            totalMinutes: Math.round(totalMinutes)
-        });*/
->>>>>>> aa5fa829f842a242c072d3e2c57b0c14032c0cf1
     } catch (error) {
         res.send(error);
     }
