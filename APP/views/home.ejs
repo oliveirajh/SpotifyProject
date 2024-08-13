@@ -30,8 +30,8 @@
 
     <div class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-fit">
         <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
-        <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers.total %></p>
-        <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.display_name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
+        <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers %></p>
+        <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
         <button class="text-white font-[500] bg-[#4444447a] mt-5 py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/favorites'">Favorites</button>
     </div>
     
@@ -40,22 +40,22 @@
         <div class="bg-[#181818] h-30 h-[75%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[500px] w-full">
             <h2 class="text-white font-semibold">Recent tracks</h2>
             <div class="flex justify-between py-3 gap-3">
-            <% recentTracks.items.forEach((item) => {%>
-                <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                    <a href="/play/<%= item.track.id %>/home"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
-                    <% if (item.track.name.length > 10)  {%>
-                        <p class="text-white text-xs font-bold hover:underline"><%= item.track.name.substring(0, 10) + '...' %></p>
-                    <% } else { %>
-                        <p class="text-white text-xs font-bold hover:underline"><%= item.track.name %></p>
-                    <% } %>
-                    
-                    <% if (item.track.artists[0].name.length > 10) { %>
-                        <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.track.artists[0].name.substring(0, 10) + '...' %></p>
-                    <% } else { %>
-                        <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.track.artists[0].name %></p>
-                    <% } %>
-                </div>
-            <% }) %>
+                <% recentTracks.forEach((item) => {%>
+                    <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
+                        <a href="/play/<%= item.id %>/home"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
+                        <% if (item.name.length > 10)  {%>
+                            <p class="text-white text-xs font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-white text-xs font-bold hover:underline"><%= item.name %></p>
+                        <% } %>
+                        
+                        <% if (item.artists[0].name.length > 10) { %>
+                            <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.artists[0].name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.artists[0].name %></p>
+                        <% } %>
+                    </div>
+                <% }) %>
             </div>
         </div>
 
@@ -86,23 +86,23 @@
     </div>
 
     <!-- Current Track Card -->
-    <% if (currentTrack) {%>
+    <% if (!currentTrack.message && currentTrack) {%>
         <div class="lg:flex transition-all items-center lg:hover:block bg-[#31313165] backdrop-blur-sm lg:right-3 lg:bottom-5 lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464] sm:hidden" id="currentTrack">
             <p class="text-white lg:hidden hidden text-xs lg:text-lg font-bold mb-0">Last song played</p>
-            <a id="track-url" href="<%= currentTrack.item.album.external_urls.spotify %>" target="_blank">
-                <img id="track-image" class="lg:h-14 lg:w-16 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.item.album.images[0].url %>" alt="Album image">
+            <a id="track-url" href="<%= currentTrack.album.url %>" target="_blank">
+                <img id="track-image" class="lg:h-14 lg:w-16 h-14 rounded-md lg:mr-3 mr-5" src="<%= currentTrack.album.images[0].url %>" alt="Album image">
             </a>
         
             <div class="flex flex-col justify-center items-start w-full ml-2" id="track-info">
                 <p id="track-name" class="text-white text-xs font-bold hover:underline">
-                    <% if (currentTrack.item.name.length > 25) { %>
-                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name.substring(0, 25) + '...' %></a>
+                    <% if (currentTrack.name.length > 25) { %>
+                        <a href="<%= currentTrack.url %>" target="_blank"><%= currentTrack.name.substring(0, 25) + '...' %></a>
                     <% } else { %>
-                        <a href="<%= currentTrack.item.external_urls.spotify %>" target="_blank"><%= currentTrack.item.name %></a>
+                        <a href="<%= currentTrack.url %>" target="_blank"><%= currentTrack.name %></a>
                     <% } %>
                 </p>
                 <p id="track-artists" class="text-[#ffffff65] text-xs hover:text-white inline-block cursor-pointer">
-                    <a href="<%= currentTrack.item.album.artists[0].external_urls.spotify %>" target="_blank"><%= currentTrack.item.album.artists[0].name.length > 15 ? currentTrack.item.album.artists[0].name.substring(0, 15) + '...' : currentTrack.item.album.artists[0].name %></a>
+                    <a href="<%= currentTrack.artists[0].url %>" target="_blank"><%= currentTrack.artists[0].name.length > 15 ? currentTrack.artists[0].name.substring(0, 15) + '...' : currentTrack.artists[0].name %></a>
                 </p>
         
                 <!-- Player progress bar -->
@@ -113,7 +113,7 @@
                 <!-- Player timing -->
                 <div class="flex justify-between w-full mt-1 text-xs">
                     <span id="current-time" class="text-white">0:00</span>
-                    <span id="total-time" class="text-[#ffffff65]"><%= Math.floor(currentTrack.item.duration_ms / 60000) %>:<%= ('0' + Math.floor((currentTrack.item.duration_ms % 60000) / 1000)).slice(-2) %></span>
+                    <span id="total-time" class="text-[#ffffff65]"><%= Math.floor(currentTrack.duration_ms / 60000) %>:<%= ('0' + Math.floor((currentTrack.duration_ms % 60000) / 1000)).slice(-2) %></span>
                 </div>
             </div>
         </div>
