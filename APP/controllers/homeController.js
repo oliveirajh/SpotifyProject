@@ -3,6 +3,9 @@ const API_URL = process.env.API_URL;
 
 exports.index = async (req, res) => {
     try {
+        req.session.accessToken = req.query.access_token;
+        req.session.refreshToken = req.query.refresh_token;
+
         const accessToken = req.query.access_token;
         const refreshToken = req.query.refresh_token;
         const userData = await axios.get(`${API_URL}/me`, {
@@ -83,10 +86,9 @@ exports.getCurrentTrack = async (req, res) => {
     try {
         const currentTrack = await axios.get(`${API_URL}/player/current-track`, {
             headers: {
-                'Authorization': `Bearer ${accessToken}`
+                'Authorization': `Bearer ${req.session.accessToken}`
             }
         });
-
         res.json(currentTrack.data);
     } catch (error) {
         res.status(500).send(error.message);

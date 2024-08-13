@@ -45,29 +45,30 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     searchForm.submit();
 });
 
-/*const updateCurrentTrack = async () => {
+const updateCurrentTrack = async () => {
     try {
         const response = await fetch('home/current-track');
         const data = await response.json();
+        console.log(data.artists.length)
 
-        if (data && data.item) {
-            document.getElementById('track-url').href = data.item.album.external_urls.spotify;
-            document.getElementById('track-image').src = data.item.album.images[0].url;
-            document.getElementById('track-name').innerHTML = data.item.name.length > 20
-                ? `<a href="${data.item.external_urls.spotify}" target="_blank">${data.item.name.substring(0, 20) + '...'}</a>`
-                : `<a href="${data.item.external_urls.spotify}" target="_blank">${data.item.name}</a>`;
-            document.getElementById('track-artists').innerHTML = data.item.album.artists.length > 1
-                ? data.item.album.artists.map((artist, index) =>
-                    `<a href="${artist.external_urls.spotify}" target="_blank">${artist.name}</a>${index < data.item.album.artists.length - 1 ? ',' : ''}`
-                ).join(' ')
-                : `<a href="${data.item.album.artists[0].external_urls.spotify}" target="_blank">${data.item.album.artists[0].name}</a>`;
-            document.getElementById('track-artists').innerHTML = data.item.album.artists.length > 1 ? data.item.album.artists.forEach((artist, index) => {
-                if (artist.name.length > 15) {
-                    artist.name = artist.name.substring(0, 15) + '...';
+        if (data) {
+            document.getElementById('track-url').href = data.url;
+            document.getElementById('track-image').src = data.album.images[0].url;
+            document.getElementById('track-name').innerHTML = data.name.length > 20
+                ? `<a href="${data.url}" target="_blank">${data.name.substring(0, 20) + '...'}</a>`
+                : `<a href="${data.url}" target="_blank">${data.name}</a>`;
+            
+                const artistLinks = data.artists.map((artist, index) => {
+                let artistName = artist.name;
+                if (artistName.length > 15) {
+                    artistName = artistName.substring(0, 15) + '...';
                 }
-            }) : data.item.album.artists[0].name.length > 15 ? data.item.album.artists[0].name = data.item.album.artists[0].name.substring(0, 15) + '...' : data.item.album.artists[0].name;
+                return `<a href="${artist.url}" target="_blank">${artistName}</a>${index < data.artists.length - 1 ? ', ' : ''}`;
+            }).join('');
 
-            const totalTime = data.item.duration_ms;
+            document.getElementById('track-artists').innerHTML = artistLinks;
+
+            const totalTime = data.duration_ms;
             const currentTime = data.progress_ms;
             const progressPercentage = (currentTime / totalTime) * 100;
 
@@ -83,4 +84,3 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
 
 
 setInterval(updateCurrentTrack, 1000);
-*/
