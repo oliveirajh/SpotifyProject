@@ -19,7 +19,11 @@ exports.play = async (req, res) => {
         );
 
         if (response.status === 204) {
-            res.redirect(req.query.track ? `/home/${req.params.URI}/${req.query.track}` : `/${req.params.URI}`);
+            if (req.query.track == 'auth') {
+                res.redirect(`/spotify/auth`);
+            } else {
+                res.redirect(req.query.track ? `/home/${req.params.URI}/${req.query.track}` : `/${req.params.URI}`);
+            }
         } else {
             res.status(response.status).send('Unable to play track');
         }

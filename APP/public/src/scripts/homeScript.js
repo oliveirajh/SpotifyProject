@@ -51,40 +51,36 @@ currentTrack.addEventListener('mouseout', () => {
 
 const updateCurrentTrack = async () => {
     try {
-        const response = await fetch('/home/current-track');
-        const data = await response.json();
-        console.log(data.artists.length)
+        let response = await fetch('/home/current-track');
+        let data = await response.json();
 
-        if (data) {
-            document.getElementById('track-url').href = data.url;
-            document.getElementById('track-image').src = data.album.images[0].url;
-            document.getElementById('track-name').innerHTML = data.name.length > 20
-                ? `<a href="${data.url}" target="_blank">${data.name.substring(0, 20) + '...'}</a>`
-                : `<a href="${data.url}" target="_blank">${data.name}</a>`;
-            
-                const artistLinks = data.artists.map((artist, index) => {
-                let artistName = artist.name;
-                if (artistName.length > 15) {
-                    artistName = artistName.substring(0, 15) + '...';
-                }
-                return `<a href="${artist.url}" target="_blank">${artistName}</a>${index < data.artists.length - 1 ? ', ' : ''}`;
-            }).join('');
+        document.getElementById('track-url').href = data.url;
+        document.getElementById('track-image').src = data.album.images[0].url;
+        document.getElementById('track-name').innerHTML = data.name.length > 20
+            ? `<a href="${data.url}" target="_blank">${data.name.substring(0, 20) + '...'}</a>`
+            : `<a href="${data.url}" target="_blank">${data.name}</a>`;
 
-            document.getElementById('track-artists').innerHTML = artistLinks;
+        const artistLinks = data.artists.map((artist, index) => {
+            let artistName = artist.name;
+            if (artistName.length > 15) {
+                artistName = artistName.substring(0, 15) + '...';
+            }
+            return `<a href="${artist.url}" target="_blank">${artistName}</a>${index < data.artists.length - 1 ? ', ' : ''}`;
+        }).join('');
 
-            const totalTime = data.duration_ms;
-            const currentTime = data.progress_ms;
-            const progressPercentage = (currentTime / totalTime) * 100;
+        document.getElementById('track-artists').innerHTML = artistLinks;
 
-            document.getElementById('track-progress').style.width = `${progressPercentage}%`;
+        const totalTime = data.duration_ms;
+        const currentTime = data.progress_ms;
+        const progressPercentage = (currentTime / totalTime) * 100;
 
-            document.getElementById('current-time').textContent = `${Math.floor(currentTime / 60000)}:${('0' + Math.floor((currentTime % 60000) / 1000)).slice(-2)}`;
-            document.getElementById('total-time').textContent = `${Math.floor(totalTime / 60000)}:${('0' + Math.floor((totalTime % 60000) / 1000)).slice(-2)}`;
-        }
+        document.getElementById('track-progress').style.width = `${progressPercentage}%`;
+
+        document.getElementById('current-time').textContent = `${Math.floor(currentTime / 60000)}:${('0' + Math.floor((currentTime % 60000) / 1000)).slice(-2)}`;
+        document.getElementById('total-time').textContent = `${Math.floor(totalTime / 60000)}:${('0' + Math.floor((totalTime % 60000) / 1000)).slice(-2)}`;
     } catch (error) {
         console.error('Error fetching current track:', error);
     }
 };
-
 
 setInterval(updateCurrentTrack, 1000);
