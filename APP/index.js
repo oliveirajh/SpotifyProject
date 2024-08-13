@@ -1,6 +1,7 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const bodyParser = require('body-parser');
+const session = require('express-session');
 
 dotenv.config();
 
@@ -12,11 +13,30 @@ app.use(bodyParser.json());
 app.set('view engine', 'ejs');
 app.use(express.static('public'));
 
+// Sessionsrs
+app.use(session({
+    secret: process.env.SESSION_SECRET,
+    cookie: {
+        maxAge: 600000,
+    },
+    resave: false,
+    saveUninitialized: false
+}));
+
 // Variables
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 3001;
+
+// Routes
+app.use('/spotify', require('./routes/spotifyRoutes'));
+app.use('/home', require('./routes/homeRoutes'));
 
 app.get('/', (req, res) => {
     res.render('index');
+});
+
+app.get('/logout', (req, res) => {
+    req.session.destroy();
+    res.redirect('/');
 });
 
 app.listen(PORT, () => {

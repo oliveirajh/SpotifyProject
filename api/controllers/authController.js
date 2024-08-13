@@ -17,10 +17,9 @@ exports.spotifyLogin = (req, res) => {
                 scope: scopes,
                 redirect_uri: redirectUri,
         }));
-        
     } catch(err) {
         console.error(err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Internal Server Error: ' + err);
     }
 }
 
@@ -46,11 +45,13 @@ exports.spotifyCallback = async (req, res) => {
                 'Content-Type': 'application/x-www-form-urlencoded'
             }
         });
+
         const access_token = response.data.access_token;
-        res.status(200).json({ access_token: access_token });
+        const refresh_token = response.data.refresh_token;
+        res.status(200).json({ access_token: access_token, refresh_token: refresh_token });
         
     } catch(err) {
         console.error(err);
-        res.status(500).send('Internal Server Error');
+        res.status(500).send('Internal Server Error: ' + err);
     }
 }
