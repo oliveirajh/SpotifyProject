@@ -4,6 +4,7 @@ const querystring = require('querystring');
 
 dotenv.config();
 
+
 exports.spotifyLogin = (req, res) => {
     try {
         const scopes = 'user-read-private user-read-email user-read-currently-playing user-top-read playlist-read-collaborative playlist-read-private user-follow-read user-library-read user-read-recently-played user-modify-playback-state';
@@ -48,7 +49,11 @@ exports.spotifyCallback = async (req, res) => {
 
         const access_token = response.data.access_token;
         const refresh_token = response.data.refresh_token;
-        res.status(200).json({ access_token: access_token, refresh_token: refresh_token });
+        if(process.env.FRONTEND_URL) {
+            res.redirect(`${process.env.FRONTEND_URL}/home?access_token=${access_token}&refresh_token=${refresh_token}`);
+        }else{
+            res.status(200).json({ access_token: access_token, refresh_token: refresh_token });
+        }
         
     } catch(err) {
         console.error(err);
