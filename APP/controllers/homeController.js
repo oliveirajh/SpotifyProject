@@ -19,44 +19,53 @@ exports.index = async (req, res) => {
         });
 
         //Falta Implementar
-        const recentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=4', {
+        const recentTracks = await axios.get(`${API_URL}/me/recently-played?limit=4`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
         //Falta Implementar
-        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+        const currentTrack = await axios.get(`${API_URL}/player/current-track`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
         //Falta Implementar
-        const allRecentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=50', {
+        const allRecentTracks = await axios.get(`${API_URL}/me/recently-played?limit=50`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        const currentMonth = new Date().getMonth();
-        let totalMinutes = 0;
+        function getAllMinutes(){
+            const currentMonth = new Date().getMonth();
+            let totalMinutes = 0;
+            allRecentTracks.data.forEach(item => {
+                const playedAt = new Date(item.played_at);
+                if (playedAt.getMonth() === currentMonth) {
+                    const trackDurationMs = item.duration_ms;
+                    totalMinutes += trackDurationMs / 60000;
+                }
+            });
+            return Math.round(totalMinutes);
+        }
 
-        allRecentTracks.data.items.forEach(item => {
-            const playedAt = new Date(item.played_at);
-            if (playedAt.getMonth() === currentMonth) {
-                const trackDurationMs = item.track.duration_ms;
-                totalMinutes += trackDurationMs / 60000;
-            }
+        res.render('home',{
+            data: userData.data,
+            playlist: recomendPlaylist.data.playlists,
+            recentTracks: recentTracks.data,
+            currentTrack: currentTrack.data,
+            totalMinutes: getAllMinutes()
         });
-
-        res.render('home', { 
+        /*res.render('home', { 
             data: userData.data,
             playlist: recomendPlaylist.data.playlists,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
             totalMinutes: Math.round(totalMinutes)
-        });
+        });*/
     } catch (error) {
         res.send(error);
     }
@@ -79,9 +88,9 @@ exports.search = async (req, res) => {
 
 exports.getCurrentTrack = async (req, res) => {
     try {
-        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+        const currentTrack = await axios.get(`${API_URL}/player/current-track`, {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 

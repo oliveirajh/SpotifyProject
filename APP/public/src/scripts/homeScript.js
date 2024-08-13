@@ -45,7 +45,7 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     searchForm.submit();
 });
 
-const updateCurrentTrack = async () => {
+/*const updateCurrentTrack = async () => {
     try {
         const response = await fetch('home/current-track');
         const data = await response.json();
@@ -83,3 +83,4 @@ const updateCurrentTrack = async () => {
 
 
 setInterval(updateCurrentTrack, 1000);
+*/

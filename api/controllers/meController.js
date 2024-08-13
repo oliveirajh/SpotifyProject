@@ -96,3 +96,34 @@ exports.getSavedTracks =  async (req,res) => {
         sendError(res,err);
     }
 }
+
+exports.getRecentlyPlayed = async (req, res) => {
+    try{
+        const { limit } = req.query;
+        access_token = req.headers.authorization;
+        const recentlyPlayed = await spotifyServices.getRecentlyPlayed(access_token, limit);
+        res.status(200).json(
+            recentlyPlayed.data.items.map(track => ({
+                id: track.track.id,
+                name: track.track.name,
+                artists: track.track.artists.map(artist => {
+                    return {
+                        name: artist.name,
+                        url: artist.external_urls.spotify
+                    }
+                }),
+                album: {
+                    name: track.track.album.name,
+                    images: track.track.album.images,
+                    url: track.track.album.external_urls.spotify,
+                },
+                duration_ms: track.track.duration_ms,
+                popularity: track.track.popularity,
+                url: track.track.external_urls.spotify,
+                played_at: track.played_at
+            }))
+        );
+    }catch(err){
+        sendError(res,err);
+    }
+}

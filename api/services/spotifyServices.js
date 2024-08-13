@@ -4,6 +4,7 @@ const getHeaders = (access_token) => (
     {'Authorization': access_token}
 )
     
+//Interações com o Perfil do Usuário
 
 exports.getMyProfile = async (access_token) => {
     return await axios.get("https://api.spotify.com/v1/me", {
@@ -49,3 +50,21 @@ exports.getSavedTracks = async(access_token, limit = 5, offset = 0) => {
     })
 }
 
+exports.getRecentlyPlayed = async(access_token, limit = 5) => {
+    const params = new URLSearchParams({
+        limit: limit.toString()
+    })
+
+    const url = `https://api.spotify.com/v1/me/player/recently-played?${params.toString()}`;
+    return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+
+//Interações com o Player
+
+exports.getCurrentTrackPlaying = async(access_token) => {
+    return await axios.get(`https://api.spotify.com/v1/me/player/currently-playing`, {
+        headers: getHeaders(access_token)
+    })
+}

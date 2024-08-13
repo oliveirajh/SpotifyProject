@@ -14,10 +14,12 @@ app.use(bodyParser.json());
 const PORT = process.env.PORT || 3000;
 const authRoutes = require('./routes/authRoutes');
 const meRoutes = require('./routes/meRoutes');
+const playerRoutes = require('./routes/playerRoutes');
 
 
 app.use('/auth', authRoutes);
 app.use('/me', meRoutes);
+app.use('/player', playerRoutes);
 
 
 app.listen(PORT, () => {
