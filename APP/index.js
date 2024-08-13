@@ -29,6 +29,7 @@ const PORT = process.env.PORT || 3001;
 // Routes
 app.use('/spotify', require('./routes/spotifyRoutes'));
 app.use('/home', require('./routes/homeRoutes'));
+app.use('/play', require('./routes/playTrackRoutes'));
 
 app.get('/', (req, res) => {
     res.render('index');

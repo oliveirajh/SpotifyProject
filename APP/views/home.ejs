@@ -42,7 +42,7 @@
             <div class="flex justify-between py-3 gap-3">
             <% recentTracks.items.forEach((item) => {%>
                 <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                    <a href="/search/play-track/<%= item.track.id %>"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
+                    <a href="/play/<%= item.track.id %>/home"><img src="<%= item.track.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
                     <% if (item.track.name.length > 10)  {%>
                         <p class="text-white text-xs font-bold hover:underline"><%= item.track.name.substring(0, 10) + '...' %></p>
                     <% } else { %>

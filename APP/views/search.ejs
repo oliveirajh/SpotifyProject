@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/src/images/spotify logo.svg" type="image/x-icon">
+    <title><%= search %> | Spotify API</title>
+</head>
+<body class="selection:bg-[#20d46573]">
+
+    <form action="/home" method="get">
+        <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 mt-10 ml-10 mr-5" type="submit">Voltar</button>
+    </form>
+
+    <div class="mx-auto p-10 pt-5 lg:w-[800px]">
+        <h1 class="text-white font-semibold mb-5 lg:text-3xl text-lg">Search results for: <br> "<%= search %>"</h1>
+        <hr class="border-[#ffffff18] mb-5 border-[1.5px]">
+
+        <div class="flex flex-col items-start gap-3">
+            <% data.tracks.items.forEach((item) => { %>
+                <a href="/play/<%= item.id %>/search?track=<%= search %>" class="w-full">
+                    <div class="bg-transparent hover:bg-[#52525277] p-2 items-center grid grid-cols-12 w-full hover:scale-90 transition-all">
+                        <img class="h-10 lg:h-20 lg:w-20 mx-auto lg:col-span-2 col-span-2" src="<%= item.album.images[0].url %>" alt="Album cover">
+                        <div id="card-txt" class="flex flex-col items-start lg:col-span-10 col-span-10">
+                            <% if (item.name.length > 28) { %>
+                                <p class="text-white text-center font-semibold text-sm lg:text-base ml-5"><%= item.name.substring(0, 28) + '...' %></p>
+                            <% } else { %>
+                                <p class="text-white text-center font-semibold text-sm lg:text-base ml-5"><%= item.name %></p>
+                            <% } %>
+
+                            <% if (item.artists[0].name.length > 28) { %>
+                                <p class="text-white text-center text-xs lg:text-sm ml-5"><%= item.artists[0].name.substring(0, 28) + '...' %></p>
+                            <% } else { %>
+                                <p class="text-white text-center text-xs lg:text-sm ml-5"><%= item.artists[0].name %></p>
+                            <% } %>
+                        </div>
+                    </div>
+                </a>
+            <% }) %>
+        </div>
+
+    </div>
+
+    <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
+    <script src="/src/scripts/searchScript.js"></script>
+</body>
+</html>

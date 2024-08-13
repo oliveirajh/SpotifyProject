@@ -54,3 +54,32 @@ exports.index = async (req, res) => {
         res.send(error);
     }
 };
+
+exports.search = async (req, res) => {
+    try {
+        const search = await axios.get(`https://api.spotify.com/v1/search?q=${req.params.track}&type=track&limit=30`, {
+            headers: {
+                'Authorization': `Bearer ${req.session.accessToken}`
+            }
+        });
+
+        res.render('search', { data: search.data, search: req.params.track });
+
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+}
+
+exports.getCurrentTrack = async (req, res) => {
+    try {
+        const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
+            headers: {
+                'Authorization': `Bearer ${req.session.accessToken}`
+            }
+        });
+
+        res.json(currentTrack.data);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+};
