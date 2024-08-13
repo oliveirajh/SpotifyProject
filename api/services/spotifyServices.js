@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const getHeaders = (access_token) => (
-    {'Authorization': `Bearer ${access_token}`}
+    {'Authorization': access_token}
 )
     
 

@@ -4,7 +4,7 @@ const sendError = require('../utils/sendError');
 
 exports.getProfile = async (req, res) => {
     try{
-        const profileData = await spotifyServices.getMyProfile(req.query.access_token);
+        const profileData = await spotifyServices.getMyProfile(req.headers.authorization);
         res.status(200).json({
             name: profileData.data.display_name,
             email: profileData.data.email,
@@ -21,7 +21,8 @@ exports.getProfile = async (req, res) => {
 
 exports.getMyTopArtists = async (req, res) => {
     try{
-        const { access_token, limit, offset } = req.query;
+        const { limit, offset } = req.query;
+        access_token = req.headers.authorization;
         const topArtists = await spotifyServices.getMyTopArtists(access_token, limit, offset);
         res.status(200).json(
             topArtists.data.items.map(artist => ({
@@ -40,7 +41,8 @@ exports.getMyTopArtists = async (req, res) => {
 
 exports.getMyTopTracks = async (req, res) => {
     try{
-        const { access_token, limit, offset } = req.query;
+        const { limit, offset } = req.query;
+        access_token = req.headers.authorization;
         const topTracks = await spotifyServices.getMyTopTracks(access_token, limit, offset);
         res.status(200).json(
             topTracks.data.items.map(track => ({
@@ -68,7 +70,8 @@ exports.getMyTopTracks = async (req, res) => {
 
 exports.getSavedTracks =  async (req,res) => {
     try{
-        const { access_token, limit, offset } = req.query;
+        const { limit, offset } = req.query;
+        access_token = req.headers.authorization;
         const savedTracks = await spotifyServices.getSavedTracks(access_token, limit, offset)
         res.status(200).json(
             savedTracks.data.items.map(track => ({
