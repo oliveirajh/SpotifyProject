@@ -2,33 +2,35 @@ const axios = require('axios');
 
 exports.index = async (req, res) => {
     try {
+        const accessToken = req.query.access_token;
+        const refreshToken = req.query.refresh_token;
         const userData = await axios.get('https://api.spotify.com/v1/me', {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
         const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?limit=4&offset=3`, {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
         const recentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=4', {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
         const currentTrack = await axios.get('https://api.spotify.com/v1/me/player/currently-playing', {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
         const allRecentTracks = await axios.get('https://api.spotify.com/v1/me/player/recently-played?limit=50', {
             headers: {
-                'Authorization': `Bearer ${req.session.accessToken}`
+                'Authorization': `Bearer ${accessToken}`
             }
         });
 
