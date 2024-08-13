@@ -7,7 +7,7 @@ dotenv.config();
 
 exports.spotifyLogin = (req, res) => {
     try {
-        const scopes = 'user-read-private user-read-email user-read-currently-playing user-top-read playlist-read-collaborative playlist-read-private user-follow-read user-library-read user-read-recently-played';
+        const scopes = 'user-read-private user-read-email user-read-currently-playing user-top-read playlist-read-collaborative playlist-read-private user-follow-read user-library-read user-read-recently-played user-modify-playback-state';
         const redirectUri = process.env.SPOTIFY_REDIRECT_URI;
         const clientId = process.env.SPOTIFY_CLIENT_ID;
 
