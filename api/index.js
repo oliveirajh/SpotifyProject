@@ -17,7 +17,6 @@ const meRoutes = require('./routes/meRoutes');
 const playerRoutes = require('./routes/playerRoutes');
 
 
-
 app.use('/auth', authRoutes);
 app.use('/me', meRoutes);
 app.use('/player', playerRoutes);
