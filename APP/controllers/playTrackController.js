@@ -23,8 +23,12 @@ exports.play = async (req, res) => {
         } else {
             res.status(response.status).send('Unable to play track');
         }
+
     } catch (error) {
-        console.error('Error playing track:', error.response ? error.response.data : error.message);
-        res.status(500);
+        if (error.response.data.error.reason === 'NO_ACTIVE_DEVICE') {
+            res.redirect(`/home/search/${req.query.track}?error=NO_ACTIVE_DEVICE`);
+        } else {
+            res.status(500).send('Unable to play track');
+        }
     }
 }; 

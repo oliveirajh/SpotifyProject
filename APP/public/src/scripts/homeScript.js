@@ -4,6 +4,22 @@ const trackName = document.querySelector('#track-name');
 const trackInfo = document.querySelector('#track-info');
 const progressBar = document.querySelector('#progress-bar');
 
+
+document.getElementById('searchForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const searchInput = document.getElementById('search').value;
+    console.log('Valor do input:', searchInput);
+
+    if (searchInput) {
+        const formAction = `/home/search/${encodeURIComponent(searchInput)}`;
+        console.log('Nova action:', formAction);
+        this.action = formAction;
+        this.submit();
+    } else {
+        console.log('O input de pesquisa está vazio.');
+    }
+});
+
 currentTrack.addEventListener('mouseover', () => {
     currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.remove('text-sm');
@@ -33,21 +49,9 @@ currentTrack.addEventListener('mouseout', () => {
     currentTrackImg.style.transitionDelay = '0s';
 });
 
-document.getElementById('searchForm').addEventListener('submit', function(event) {
-    event.preventDefault();
-    
-    const searchInput = document.getElementById('search').value;
-    const searchForm = document.getElementById('searchForm');
-
-    
-    searchForm.action = `home/search/${encodeURIComponent(searchInput)}`;
-    
-    searchForm.submit();
-});
-
 const updateCurrentTrack = async () => {
     try {
-        const response = await fetch('home/current-track');
+        const response = await fetch('/home/current-track');
         const data = await response.json();
         console.log(data.artists.length)
 

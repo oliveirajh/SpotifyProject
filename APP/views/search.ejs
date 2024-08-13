@@ -5,17 +5,22 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="/src/styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="shortcut icon" href="/src/images/spotify logo.svg" type="image/x-icon">
+    <link rel="shortcut icon" href="/src/images/spotifyLogo.svg" type="image/x-icon">
     <title><%= search %> | Spotify API</title>
 </head>
 <body class="selection:bg-[#20d46573]">
 
-    <form action="/home" method="get">
+    <form action="/spotify/auth" method="get">
         <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 mt-10 ml-10 mr-5" type="submit">Voltar</button>
     </form>
 
     <div class="mx-auto p-10 pt-5 lg:w-[800px]">
         <h1 class="text-white font-semibold mb-5 lg:text-3xl text-lg">Search results for: <br> "<%= search %>"</h1>
+
+        <% if (error) { %>
+            <p title="Please, try to play a track on your spotify app" class="text-rose-500 font-semibold text-sm lg:text-base cursor-pointer mb-2">No devices found</p>
+        <% } %>
+
         <hr class="border-[#ffffff18] mb-5 border-[1.5px]">
 
         <div class="flex flex-col items-start gap-3">

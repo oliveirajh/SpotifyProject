@@ -6,7 +6,7 @@
     <link rel="stylesheet" href="/src/styles/style.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="shortcut icon" href="/src/images/spotifyLogo.svg" type="image/x-icon">
-    <title><%= data.display_name %> | Spotify API</title>
+    <title><%= data.name %> | Spotify API</title>
 </head>
 <body class="selection:bg-[#20d46573] pb-5">
 
@@ -42,7 +42,7 @@
             <div class="flex justify-between py-3 gap-3">
                 <% recentTracks.forEach((item) => {%>
                     <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                        <a href="/play/<%= item.id %>/home"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
+                        <a href="/play/<%= item.id %>/spotify?track=auth"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
                         <% if (item.name.length > 10)  {%>
                             <p class="text-white text-xs font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>

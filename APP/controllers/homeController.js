@@ -8,6 +8,7 @@ exports.index = async (req, res) => {
 
         const accessToken = req.query.access_token;
         const refreshToken = req.query.refresh_token;
+
         const userData = await axios.get(`${API_URL}/me`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
@@ -75,10 +76,10 @@ exports.search = async (req, res) => {
             }
         });
 
-        res.render('search', { data: search.data, search: req.params.track });
+        res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
 
     } catch (error) {
-        res.status(500).send(error.message);
+        res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
     }
 }
 
