@@ -18,21 +18,11 @@ exports.play = async (req, res) => {
             }
         );
 
-        if (response.status === 204) {
-            if (req.query.track == 'auth') {
-                res.redirect(`/spotify/auth`);
-            } else {
-                res.redirect(req.query.track ? `/home/${req.params.URI}/${req.query.track}` : `/${req.params.URI}`);
-            }
-        } else {
-            res.status(response.status).send('Unable to play track');
-        }
+        res.redirect(decodeURIComponent(req.query.redirect));
 
     } catch (error) {
-        if (error.response.data.error.reason === 'NO_ACTIVE_DEVICE') {
-            res.redirect(`/home/search/${req.query.track}?error=NO_ACTIVE_DEVICE`);
-        } else {
-            res.status(500).send('Unable to play track');
+        if (error.response.status === 404) {
+            res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
         }
     }
 }; 

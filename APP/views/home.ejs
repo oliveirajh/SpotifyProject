@@ -10,7 +10,7 @@
 </head>
 <body class="selection:bg-[#20d46573] pb-5">
 
-    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center">
+    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto">
         <div class="flex items-center">
             <form action="logout" method="get">
                 <button class="text-black font-[500] bg-[#20d464] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Logout</button>
@@ -23,8 +23,10 @@
         </div>
 
         <form id="searchForm" method="POST">
-            <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white focus:outline-none lg:pl-2 pl-0 w-[180px] lg:w-[300px]" placeholder="Search for a song...">
-            <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 lg:m-5 mt-5 ml-2 mr-5" type="submit">Search</button>
+            <div class="">
+                <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white focus:outline-none lg:pl-2 pl-0 w-[180px] lg:w-[300px]" placeholder="Search for a song...">
+                <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 lg:m-5 ml-2" type="submit">Search</button>
+            </div>
         </form>
     </div>
 
@@ -35,46 +37,47 @@
         <button class="text-white font-[500] bg-[#4444447a] mt-5 py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/favorites'">Favorites</button>
     </div>
     
-    <div class="lg:flex lg:flex-row gap-2 lg:rounded-lg lg:gap-2bg-transparent justify-between lg:justify-center mx-auto w-full lg:w-7/12">
+    <div class="lg:flex lg:flex-row items-center gap-2 lg:rounded-lg lg:gap-2 bg-transparent justify-between lg:justify-center mx-auto w-fit lg:w-7/12">
         
-        <div class="bg-[#181818] h-30 h-[75%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-full">
+        <div class="bg-[#181818] h-[75%] lg:h-[85%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-fit">
             <h2 class="text-white font-semibold">Recent tracks</h2>
-            <div class="flex justify-between py-3 gap-3">
+            <div class="flex justify-between py-3 gap-2">
                 <% recentTracks.forEach((item) => {%>
-                    <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                        <a href="/play/<%= item.id %>/spotify?track=auth"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
+                    <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
+                        <a href="/play/<%= item.id %>?redirect=%2Fspotify%2Fauth"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
                         <% if (item.name.length > 10)  {%>
-                            <p class="text-white text-xs font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
+                            <p class="text-white text-sm font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>
-                            <p class="text-white text-xs font-bold hover:underline"><%= item.name %></p>
+                            <p class="text-white text-sm font-bold hover:underline"><%= item.name %></p>
                         <% } %>
                         
                         <% if (item.artists[0].name.length > 10) { %>
-                            <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.artists[0].name.substring(0, 10) + '...' %></p>
+                            <p class="text-[#ffffff65] text-xs hover:text-white inline-block"><%= item.artists[0].name.substring(0, 10) + '...' %></p>
                         <% } else { %>
-                            <p class="text-[#ffffff65] text-sm hover:text-white inline-block"><%= item.artists[0].name %></p>
+                            <p class="text-[#ffffff65] text-xs hover:text-white inline-block"><%= item.artists[0].name %></p>
                         <% } %>
                     </div>
                 <% }) %>
             </div>
         </div>
 
-        <div class="bg-[#181818] h-[75%] lg:rounded-lg rounded-none p-5 lg:w-[600px] w-full">
-            <h2 class="text-white font-semibold">Recommended playlists</h2>
-            <div class="flex justify-between py-3">
+        <div class="bg-[#181818] h-[75%] lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-full">
+            <h2 class="text-white font-semibold">Recommended tracks</h2>
+            <div class="flex justify-between py-3 gap-2">
                 <% playlist.items.forEach((item) => {%>
-                    <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all mb-5">
+                    <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
                         <a href="<%= item.external_urls.spotify %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
                         <% if (item.name.length > 10)  {%>
-                            <p class="text-white text-xs font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
+                            <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>
-                            <p class="text-white text-xs font-bold hover:underline"><%= item.name %></p>
+                            <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= item.name %></p>
                         <% } %>
                     </div>
                 <% }) %>
             </div>
         </div>
     </div>
+
 
     <div class="flex justify-between flex-row bg-[#181818] h-30 lg:rounded-lg rounded-none p-5 mb-10 lg:mb-0 mx-auto w-full lg:w-7/12 mt-2">
         <div class="items-center py-3">
@@ -118,8 +121,6 @@
         
     <% }; %>
     
-
-
     <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
     <script src="/src/scripts/homeScript.js"></script>
 </body>

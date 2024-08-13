@@ -22,37 +22,38 @@ exports.index = async (req, res) => {
             }
         });
 
-         //Falta Implementar
         const recentTracks = await axios.get(`${API_URL}/me/recently-played?limit=4`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        //Falta Implementar
         const currentTrack = await axios.get(`${API_URL}/player/current-track`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        //Falta Implementar
         const allRecentTracks = await axios.get(`${API_URL}/me/recently-played?limit=50`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
         });
 
-        function getAllMinutes(){
+        function getAllMinutes(allRecentTracks) {
             const currentMonth = new Date().getMonth();
             let totalMinutes = 0;
-            allRecentTracks.data.forEach(item => {
-                const playedAt = new Date(item.played_at);
-                if (playedAt.getMonth() === currentMonth) {
-                    const trackDurationMs = item.duration_ms;
-                    totalMinutes += trackDurationMs / 60000;
-                }
-            });
+            
+            if (allRecentTracks && Array.isArray(allRecentTracks.data)) {
+                allRecentTracks.data.forEach(item => {
+                    const playedAt = new Date(item.played_at);
+                    if (playedAt.getMonth() === currentMonth) {
+                        const trackDurationMs = item.duration_ms;
+                        totalMinutes += trackDurationMs / 60000;
+                    }
+                });
+            }
+            
             return Math.round(totalMinutes);
         }
 
@@ -61,7 +62,7 @@ exports.index = async (req, res) => {
             playlist: recomendPlaylist.data.playlists,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
-            totalMinutes: getAllMinutes()
+            totalMinutes: getAllMinutes(allRecentTracks),
         })
     } catch (error) {
         res.send(error);
