@@ -62,11 +62,11 @@
         </div>
 
         <div class="bg-[#181818] h-[75%] lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-full">
-            <h2 class="text-white font-semibold">Recommended tracks</h2>
+            <h2 class="text-white font-semibold">Recommended playlists</h2>
             <div class="flex justify-between py-3 gap-2">
-                <% playlist.items.forEach((item) => {%>
+                <% playlists.forEach((item) => {%>
                     <div class="text-center flex flex-col justify-center items-center hover:scale-110 transition-all">
-                        <a href="<%= item.external_urls.spotify %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
+                        <a href="<%= item.url %>" target="_blank"><img src="<%= item.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Playlist cover"></a>
                         <% if (item.name.length > 10)  {%>
                             <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>

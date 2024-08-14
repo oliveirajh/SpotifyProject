@@ -16,7 +16,7 @@ exports.index = async (req, res) => {
         });
 
         //Falta Implementar na API
-        const recomendPlaylist = await axios.get(`${API_URL}/recommendations`, {
+        const recomendPlaylist = await axios.get(`${API_URL}/me/recommendations`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
@@ -59,7 +59,7 @@ exports.index = async (req, res) => {
 
         res.render('home',{
             data: userData.data,
-            playlist: recomendPlaylist.data,
+            playlists: recomendPlaylist.data,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
             totalMinutes: getAllMinutes(allRecentTracks),
