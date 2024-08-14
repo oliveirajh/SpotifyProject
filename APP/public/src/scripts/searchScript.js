@@ -1,11 +1,10 @@
 document.getElementById('searchForm').addEventListener('submit', function(event) {
     event.preventDefault();
     const searchInput = document.getElementById('search').value;
-    console.log('Valor do input:', searchInput);
+    const type = document.getElementById('type').value;
 
     if (searchInput) {
-        const formAction = `/home/search/${encodeURIComponent(searchInput)}`;
-        console.log('Nova action:', formAction);
+        const formAction = `/home/search/${encodeURIComponent(searchInput)}?type=${type}`;
         this.action = formAction;
         this.submit();
     } else {
