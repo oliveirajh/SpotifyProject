@@ -19,6 +19,25 @@ exports.getProfile = async (req, res) => {
     }
 }
 
+exports.getMyRecommendations = async (req, res) => {
+    try{
+        const { limit, offset } = req.query;
+        access_token = req.headers.authorization;
+        const recommendations = await spotifyServices.getMyRecommendations(access_token, limit, offset);
+        res.status(200).json(
+            recommendations.data.playlists.items.map(playlist => ({
+                id: playlist.id,
+                name: playlist.name,
+                description: playlist.description,
+                images: playlist.images,
+                url: playlist.external_urls.spotify
+            }))
+        );
+    }catch(err){
+        sendError(res,err);
+    }
+}
+
 exports.getMyTopArtists = async (req, res) => {
     try{
         const { limit, offset } = req.query;

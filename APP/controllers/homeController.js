@@ -16,7 +16,7 @@ exports.index = async (req, res) => {
         });
 
         //Falta Implementar na API
-        const recomendPlaylist = await axios.get(`https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?limit=4&offset=3`, {
+        const recomendPlaylist = await axios.get(`${API_URL}/recommendations`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
@@ -59,7 +59,7 @@ exports.index = async (req, res) => {
 
         res.render('home',{
             data: userData.data,
-            playlist: recomendPlaylist.data.playlists,
+            playlist: recomendPlaylist.data,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
             totalMinutes: getAllMinutes(allRecentTracks),

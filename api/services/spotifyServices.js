@@ -12,6 +12,18 @@ exports.getMyProfile = async (access_token) => {
     })
 }
 
+exports.getMyRecommendations = async (access_token, limit = 4, offset = 3) => {
+    const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString()
+    })
+
+    const url = `https://api.spotify.com/v1/browse/categories/0JQ5DAt0tbjZptfcdMSKl3/playlists?${params.toString()}`;
+    return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+
 exports.getMyTopArtists = async (access_token, limit = 5, offset = 0) => {
     //Construi um objeto URLSearchParams para adicionar os parâmetros limit e pega os valores default caso nenhum parametro seja passado
     const params = new URLSearchParams({
@@ -57,14 +69,6 @@ exports.getRecentlyPlayed = async(access_token, limit = 5) => {
 
     const url = `https://api.spotify.com/v1/me/player/recently-played?${params.toString()}`;
     return await axios.get(url, {
-        headers: getHeaders(access_token)
-    })
-}
-
-//Interações com o Player
-
-exports.getCurrentTrackPlaying = async(access_token) => {
-    return await axios.get(`https://api.spotify.com/v1/me/player/currently-playing`, {
         headers: getHeaders(access_token)
     })
 }
