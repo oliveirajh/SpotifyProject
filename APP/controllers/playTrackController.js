@@ -22,7 +22,7 @@ exports.play = async (req, res) => {
 
     } catch (error) {
         if (error.response.status === 404) {
-            res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
+            res.redirect(`${decodeURIComponent(req.query.redirect)}&error=device_not_found`);
         }
     }
 }; 
