@@ -100,7 +100,7 @@ exports.search = async (access_token, type, name, limit = 30) => {
         type: type,
         limit: limit.toString()
     })
-
+    
     const url = `https://api.spotify.com/v1/search?${params.toString()}`;
     return await axios.get(url, {
         headers: getHeaders(access_token)

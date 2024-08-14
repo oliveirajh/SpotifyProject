@@ -46,7 +46,9 @@
         <hr class="border-[#ffffff18] mb-5 border-[1.5px]">
 
         <div class="flex flex-col items-start gap-3">
-            <% data.tracks.items.forEach((item) => { %>
+            <!-- results São os dados do que retornar
+            TEM UM data.type que retorna o tipo de busca que foi feita -->
+            <% data.results.forEach((item) => { %>
                 <a href="/play/<%= item.id %>?redirect=%2Fhome%2Fsearch%2F<%= search %>&track=<%= encodeURIComponent(search) %>" class="w-full">
                     <div class="bg-transparent hover:bg-[#52525277] p-2 items-center grid grid-cols-12 w-full hover:scale-90 transition-all">
                         <img class="h-20 lg:h-20 lg:w-20 lg:col-span-2 col-span-4 mr-5" src="<%= item.album.images[0].url %>" alt="Album cover">

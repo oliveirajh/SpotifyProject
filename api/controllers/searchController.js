@@ -7,15 +7,16 @@ exports.search = async (req, res) => {
         const { type, name } = req.params;
         const { limit } = req.query;
         access_token = req.headers.authorization;
-        const response = await spotifyServices.searchTrack(access_token, type, name, limit);
-        
-        if(response.data.length === 0){
+        const response = await spotifyServices.search(access_token, type, name, limit);
+
+        if(Object.keys(response.data).length === 0){
             res.status(404).json({message: 'Track not found'});
         }
 
-        if(type === 'track' && response.data.length > 0){
-            res.status(200).json(
-                response.data.map(track => ({
+        if(type === 'track' && Object.keys(response.data).length > 0){
+            res.status(200).json({
+                type: 'track',
+                results: response.data.tracks.items.map(track => ({
                     id: track.id,
                     name: track.name,
                     artists: track.artists.map(artist => {
@@ -33,24 +34,26 @@ exports.search = async (req, res) => {
                     popularity: track.popularity,
                     url: track.external_urls.spotify
                 }))
-            );
+            });
         }
 
-        if(type === 'artist' && response.data.length > 0){
-            res.status(200).json(
-                response.data.map(artist => ({
+        if(type === 'artist' && Object.keys(response.data).length > 0){
+            res.status(200).json({
+                type: 'artist',
+                results: response.data.artist.items.map(artist => ({
                     id: artist.id,
                     name: artist.name,
                     images: artist.images,
                     genres: artist.genres,
                     url: artist.external_urls.spotify
                 }))
-            );
+            });
         }
 
-        if(type === 'album' && response.data.length > 0){
-            res.status(200).json(
-                response.data.map(album => ({
+        if(type === 'album' && Object.keys(response.data).length > 0){
+            res.status(200).json({
+                type: 'album',
+                results: response.data.albums.items.map(album => ({
                     id: album.id,
                     name: album.name,
                     images: album.images,
@@ -62,7 +65,7 @@ exports.search = async (req, res) => {
                     }),
                     url: album.external_urls.spotify
                 }))
-            );
+        });
         }
 
         

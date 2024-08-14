@@ -71,7 +71,7 @@ exports.index = async (req, res) => {
 
 exports.search = async (req, res) => {
     try {
-        const search = await axios.get(`https://api.spotify.com/v1/search?q=${req.params.track}&type=track&limit=30`, {
+        const search = await axios.get(`${API_URL}/search/${req.query.type}/${req.params.track}`, {
             headers: {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
@@ -80,7 +80,8 @@ exports.search = async (req, res) => {
         res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
 
     } catch (error) {
-        res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
+        console.log(error);
+        //res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
     }
 }
 
