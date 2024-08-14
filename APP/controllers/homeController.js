@@ -77,13 +77,26 @@ exports.search = async (req, res) => {
             }
         });
 
-        res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
+        switch (req.query.type) {
+            case 'track':
+                res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
+                break;
+            case 'artist':
+                res.render('searchArtist', { data: search.data, search: req.params.track, error: req.query.error });
+                break;
+            case 'album':
+                res.render('searchAlbum', { data: search.data, search: req.params.track, error: req.query.error });
+                break;
+            default:
+                res.redirect('/spotify/auth');
+        }
 
     } catch (error) {
         console.log(error);
-        res.render('search', { data: search.data, search: req.params.track, error: req.query.error });
+        res.redirect("/spotify/auth");
     }
 }
+
 exports.artistProfile = async (req, res) => {
     try {
         const artistId = req.params.id;
