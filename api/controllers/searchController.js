@@ -40,10 +40,10 @@ exports.search = async (req, res) => {
         if(type === 'artist' && Object.keys(response.data).length > 0){
             res.status(200).json({
                 type: 'artist',
-                results: response.data.artist.items.map(artist => ({
+                results: response.data.artists.items.map(artist => ({
                     id: artist.id,
                     name: artist.name,
-                    images: artist.images,
+                    images: artist.images.map(image => image.url),
                     genres: artist.genres,
                     url: artist.external_urls.spotify
                 }))

@@ -47,9 +47,9 @@
 
         <div class="flex flex-col items-start gap-3">
             <% data.results.forEach((item) => { %>
-                <a href="/play/<%= item.id %>?type=<%= data.type %>&redirect=%2Fhome%2Fsearch%2F<%= encodeURIComponent(search) %>%3Ftype=<%= data.type %>" class="w-full">
+                <a href="/artist/<%= item.id %>" class="w-full">
                     <div class="bg-transparent hover:bg-[#52525277] p-2 items-center grid grid-cols-12 w-full hover:scale-90 transition-all">
-                        <img class="h-20 lg:h-20 lg:w-20 lg:col-span-2 col-span-4 mr-5" src="<%= item.images[0].url %>" alt="Album cover">
+                        <img class="h-20 lg:h-20 lg:w-20 lg:col-span-2 col-span-4 mr-5" src="<%= item.images[0] %>" alt="Album cover">
                         <div id="card-txt" class="flex flex-col items-start lg:col-span-8 col-span-8 w-fit">
                             <% if (item.name.length > 28) { %>
                                 <p class="text-white text-center font-semibold text-sm lg:text-base"><%= item.name.substring(0, 28) + '...' %></p>
@@ -57,10 +57,10 @@
                                 <p class="text-white text-center font-semibold text-sm lg:text-base"><%= item.name %></p>
                             <% } %>
 
-                            <% if (item.artists[0].name.length > 28) { %>
-                                <p class="text-white text-center text-xs lg:text-sm"><%= item.artists[0].name.substring(0, 28) + '...' %></p>
+                            <% if (item.name.length > 28) { %>
+                                <p class="text-white text-center text-xs lg:text-sm"><%= item.name.substring(0, 28) + '...' %></p>
                             <% } else { %>
-                                <p class="text-white text-center text-xs lg:text-sm"><%= item.artists[0].name %></p>
+                                <p class="text-white text-center text-xs lg:text-sm"><%= item.name %></p>
                             <% } %>
                         </div>
                     </div>

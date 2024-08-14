@@ -3,7 +3,7 @@ const sendError = async (res, error) => {
         res.status(error.response.status).json(error.response.statusText);
     }
     else{
-        console.error(error);
+        //console.error(error);
         res.status(500).send('Internal Server Error');
     }
 }

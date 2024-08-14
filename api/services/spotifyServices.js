@@ -95,6 +95,7 @@ exports.getCurrentTrackPlaying = async(access_token) => {
 //Search
 
 exports.search = async (access_token, type, name, limit = 30) => {
+    limit = type === 'track' ? 20 : type === 'artist' ? 5 : type === 'album' ? 5 : limit;
     const params = new URLSearchParams({
         q: name,
         type: type,
@@ -103,6 +104,32 @@ exports.search = async (access_token, type, name, limit = 30) => {
     
     const url = `https://api.spotify.com/v1/search?${params.toString()}`;
     return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+
+//Interações com os Artistas
+
+exports.getArtist = async (access_token, id) => {
+    return await axios.get(`https://api.spotify.com/v1/artists/${id}`, {
+        headers: getHeaders(access_token)
+    })
+}
+
+exports.getArtistAlbums = async (access_token, id, limit = 5, offset = 0) => {
+    const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString()
+    })
+
+    const url = `https://api.spotify.com/v1/artists/${id}/albums?${params.toString()}`;
+    return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+
+exports.getArtistTopTracks = async (access_token, id) => {
+    return await axios.get(`https://api.spotify.com/v1/artists/${id}/top-tracks`, {
         headers: getHeaders(access_token)
     })
 }
