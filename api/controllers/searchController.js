@@ -1,0 +1,72 @@
+const axios = require('axios');
+const spotifyServices = require('../services/spotifyServices');
+const sendError = require('../utils/sendError');
+
+exports.search = async (req, res) => {
+    try{
+        const { type, name } = req.params;
+        const { limit } = req.query;
+        access_token = req.headers.authorization;
+        const response = await spotifyServices.searchTrack(access_token, type, name, limit);
+        
+        if(response.data.length === 0){
+            res.status(404).json({message: 'Track not found'});
+        }
+
+        if(type === 'track' && response.data.length > 0){
+            res.status(200).json(
+                response.data.map(track => ({
+                    id: track.id,
+                    name: track.name,
+                    artists: track.artists.map(artist => {
+                        return {
+                            name: artist.name,
+                            url: artist.external_urls.spotify
+                        }
+                    }),
+                    album: {
+                        name: track.album.name,
+                        images: track.album.images,
+                        url: track.album.external_urls.spotify,
+                    },
+                    duration: track.duration_ms,
+                    popularity: track.popularity,
+                    url: track.external_urls.spotify
+                }))
+            );
+        }
+
+        if(type === 'artist' && response.data.length > 0){
+            res.status(200).json(
+                response.data.map(artist => ({
+                    id: artist.id,
+                    name: artist.name,
+                    images: artist.images,
+                    genres: artist.genres,
+                    url: artist.external_urls.spotify
+                }))
+            );
+        }
+
+        if(type === 'album' && response.data.length > 0){
+            res.status(200).json(
+                response.data.map(album => ({
+                    id: album.id,
+                    name: album.name,
+                    images: album.images,
+                    artists: album.artists.map(artist => {
+                        return {
+                            name: artist.name,
+                            url: artist.external_urls.spotify
+                        }
+                    }),
+                    url: album.external_urls.spotify
+                }))
+            );
+        }
+
+        
+    }catch(err){
+        sendError(res,err);
+    }
+}
