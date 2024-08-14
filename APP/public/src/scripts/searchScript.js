@@ -11,3 +11,14 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
         console.log('O input de pesquisa está vazio.');
     }
 });
+
+document.getElementById('type').addEventListener('change', function() {
+
+    if(this.value === 'album') {
+        this.classList.remove('pr-6');
+        this.classList.add('pr-9');
+    } else {
+        this.classList.remove('pr-9');
+        this.classList.add('pr-6');
+    }
+});

@@ -19,6 +19,17 @@ document.getElementById('searchForm').addEventListener('submit', function(event)
     }
 });
 
+document.getElementById('type').addEventListener('change', function() {
+
+    if(this.value === 'album') {
+        this.classList.remove('pr-6');
+        this.classList.add('pr-9');
+    } else {
+        this.classList.remove('pr-9');
+        this.classList.add('pr-6');
+    }
+});
+
 currentTrack.addEventListener('mouseover', () => {
     currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.remove('text-sm');
