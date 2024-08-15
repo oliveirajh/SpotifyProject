@@ -17,6 +17,7 @@ const meRoutes = require('./routes/meRoutes');
 const playerRoutes = require('./routes/playerRoutes');
 const searchRoutes = require('./routes/searchRoutes');
 const artistRoutes = require('./routes/artistRoutes');
+const albumRoutes = require('./routes/albumRoutes');
 
 
 app.use('/auth', authRoutes);
@@ -24,6 +25,8 @@ app.use('/me', meRoutes);
 app.use('/player', playerRoutes);
 app.use('/search', searchRoutes);
 app.use('/artists', artistRoutes);
+app.use('/albums', albumRoutes);
+
 
 app.listen(PORT, () => {
     console.log(`Server is running on: http://localhost:${PORT}`);

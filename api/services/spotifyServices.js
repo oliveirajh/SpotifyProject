@@ -133,3 +133,11 @@ exports.getArtistTopTracks = async (access_token, id) => {
         headers: getHeaders(access_token)
     })
 }
+
+//Interações com os Albuns
+
+exports.getAlbum = async (access_token, id) => {
+    return await axios.get(`https://api.spotify.com/v1/albums/${id}`, {
+        headers: getHeaders(access_token)
+    })
+}
