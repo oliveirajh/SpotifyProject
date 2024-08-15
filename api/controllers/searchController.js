@@ -43,6 +43,8 @@ exports.search = async (req, res) => {
                 results: response.data.artists.items.map(artist => ({
                     id: artist.id,
                     name: artist.name,
+                    followers: artist.followers.total,
+                    popularity: artist.popularity,
                     images: artist.images.map(image => image.url),
                     genres: artist.genres,
                     url: artist.external_urls.spotify

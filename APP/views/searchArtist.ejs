@@ -54,13 +54,7 @@
                             <% if (item.name.length > 28) { %>
                                 <p class="text-white text-center font-semibold text-sm lg:text-base"><%= item.name.substring(0, 28) + '...' %></p>
                             <% } else { %>
-                                <p class="text-white text-center font-semibold text-sm lg:text-base"><%= item.name %></p>
-                            <% } %>
-
-                            <% if (item.name.length > 28) { %>
-                                <p class="text-white text-center text-xs lg:text-sm"><%= item.name.substring(0, 28) + '...' %></p>
-                            <% } else { %>
-                                <p class="text-white text-center text-xs lg:text-sm"><%= item.name %></p>
+                                <p class="text-white text-center font-semibold text-sm lg:text-base"><%= item.name %>  <% if(item.popularity > 30 && item.followers > 5000) { %><img src="/src/images/verifiedArtist.svg" alt="Verified icon" class="h-5 inline-block"> <% } %></p>
                             <% } %>
                         </div>
                     </div>
