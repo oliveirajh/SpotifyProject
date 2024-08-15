@@ -43,17 +43,22 @@
         <p class="text-white text-center font-bold text-base lg:text-xl">
             Artist: <%= artist.name %> 
             <% if(artist.popularity > 30 && artist.followers > 5000) { %>
-                <img src="/src/images/verifiedArtist.svg" alt="Verified icon" class="h-5 inline-block ml-2">
+                <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block mb-1">
             <% } %>
         </p>        
-        <p class="text-white font-semibold bg-[#1db954] mt-5 py-2 px-6 rounded-full text-sm hover:bg-[#1ed760] transition-all duration-500 shadow-lg">
-            <span class="font-bold">Genres:</span> <%= artist.genres.join(', ') %>
-        </p>        
+
+            <p class="text-white font-semibold py-2 px-6 text-sm">Genres:</p>
+            <div class="flex">
+                <% artist.genres.forEach((genre) => { %>
+                    <p class="bg-[#1db9543b] border-2 border-[#1db954] text-white rounded-full px-2 py-1 ml-2 text-xs lg:text-base"><%= `${genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase()}` %></p>
+                <% }) %>
+            </div>
+        </div>   
     </div>
 
     <div class="lg:flex lg:flex-row items-center gap-2 lg:rounded-lg lg:gap-2 bg-transparent justify-between lg:justify-center mx-auto w-fit lg:w-7/12">
         
-        <div class="bg-[#181818] h-auto lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 w-full">
+        <div class="bg-[#181818] h-[75%] lg:h-[85%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 w-full">
             <h2 class="text-white font-semibold">Álbuns</h2>
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
                 <% albums.slice(0, 4).forEach((album) => { %>
@@ -62,16 +67,16 @@
                             <img src="<%= album.images[1].url %>" class="w-full rounded-lg mb-1" alt="Album cover">
                         </a>
                         <% if (album.name.length > 10) { %>
-                            <p class="text-white text-sm font-bold hover:underline"><%= album.name.substring(0, 10) + '...' %></p>
+                            <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= album.name.substring(0, 10) + '...' %></p>
                         <% } else { %>
-                            <p class="text-white text-sm font-bold hover:underline"><%= album.name %></p>
+                            <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= album.name %></p>
                         <% } %>
                     </div>
                 <% }) %> 
             </div>
         </div>
         
-        <div class="bg-[#181818] h-auto lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 w-full">
+        <div class="bg-[#181818] h-[75%] lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 w-full">
             <h2 class="text-white font-semibold">Top Tracks</h2>
             <div class="grid grid-cols-2 gap-4 lg:grid-cols-4">
                 <% tracks.slice(0, 4).forEach((track) => { %>
