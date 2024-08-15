@@ -33,8 +33,6 @@ app.use('/play', require('./routes/playTrackRoutes'));
 app.use('/artist', require('./routes/artistRoutes'));
 app.use('/redirect', require('./routes/redirectRoutes'));
 
-const verifyAccessToken = require('./middlewares/verifyAccessToken');
-
 app.get('/', (req, res) => {
     res.render('index');
 });
