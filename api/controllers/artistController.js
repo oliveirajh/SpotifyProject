@@ -6,7 +6,6 @@ exports.getArtist = async (req, res) => {
         const { id } = req.params;
         const access_token = req.headers.authorization;
         const artist = await spotifyServices.getArtist(access_token, id);
-        console.log(artist.data);
         res.status(200).json({
             name: artist.data.name,
             genres: artist.data.genres,

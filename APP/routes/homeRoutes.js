@@ -8,7 +8,7 @@ router.get("/",verifyAccessToken, homeController.index);
 router.post('/',verifyAccessToken, homeController.search);
 router.post('/search/:track',verifyAccessToken, homeController.search);
 router.get('/search/:track',verifyAccessToken, homeController.search);
-router.get('/current-track', homeController.getCurrentTrack);
+router.get('/current-track',verifyAccessToken, homeController.getCurrentTrack);
 
 
 
