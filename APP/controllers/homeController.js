@@ -3,12 +3,8 @@ const API_URL = process.env.API_URL;
 
 exports.index = async (req, res) => {
     try {
-        req.session.accessToken = req.query.access_token;
-        req.session.refreshToken = req.query.refresh_token;
-        req.session.tokenExpiry = Date.now() + 3600 * 1000;
-
-        const accessToken = req.query.access_token;
-        const refreshToken = req.query.refresh_token;
+        const accessToken = req.session.accessToken;
+        const refreshToken = req.session.refreshToken;
 
         const userData = await axios.get(`${API_URL}/me`, {
             headers: {

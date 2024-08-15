@@ -50,7 +50,7 @@ exports.spotifyCallback = async (req, res) => {
         const access_token = response.data.access_token;
         const refresh_token = response.data.refresh_token;
         if(process.env.FRONTEND_URL) {
-            res.redirect(`${process.env.FRONTEND_URL}/home?access_token=${access_token}&refresh_token=${refresh_token}`);
+            res.redirect(`${process.env.FRONTEND_URL}/redirect?access_token=${access_token}&refresh_token=${refresh_token}`);
         }else{
             res.status(200).json({ access_token: access_token, refresh_token: refresh_token });
         }
