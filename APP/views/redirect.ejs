@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/src/images/spotifyLogo.svg" type="image/x-icon">
+    <title>Redirecting | Spotify API</title>
+</head>
+<body class="selection:bg-[#20d46573] pb-5">
+
+    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto">
+        <div class="flex items-center">
+            <a href="/">
+                <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo" class="h-8">
+            </a>
+        </div>
+    </div>
+
+    <div class="bg-transparent flex flex-col items-center mx-auto p-10 w-full lg:w-7/12">
+        <h1 class="text-white text-2xl lg:text-4xl font-bold mb-4">Redirecting...</h1>
+        <p class="text-white text-center text-lg mb-4">You are being redirected to the requested page.</p>
+        <p class="text-white text-center mb-6">If you are not redirected automatically, <a href="/" class="text-[#20d465] hover:underline">click here</a> to return to the homepage.</p>
+        <div class="bg-[#181818] p-6 rounded-lg">
+            <p class="text-white text-center">Thank you for using our web app!</p>
+        </div>
+    </div>
+
+    <footer class="text-[#ffffff23] text-sm lg:text-base text-center mt-6">All rights reserved - CompassUOL - AI/ML - Group 7</footer>
+
+    <script>
+        setTimeout(function() {
+            window.location.href = "/";
+        }, 5000);
+    </script>
+</body>
+</html>
