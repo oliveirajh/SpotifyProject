@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/src/styles/style.css">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="shortcut icon" href="/src/images/spotifyLogo.svg" type="image/x-icon">
+    <title> Favorites | Spotify API</title>
+</head>
+<body class="selection:bg-[#20d46573] pb-5">
+    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto">
+        <div class="flex items-center">
+            <a href="/home">
+                <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Voltar</button>
+            </a>
+            
+            <a href="#">
+                <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo">
+            </a>
+        </div>
+    </div>
+    <div id="header" class="bg-transparent flex h-fit flex-col items-center mx-auto p-5 w-screen">
+        <img id="profilePic" src="<%= user.images[1].url %>" class="w-48 h-48 rounded-full border-2 border-transparent shadow-sm mb-3">
+        <h2 class="text-center text-[#dfdfdf] font-bold text-4xl"><%= user.name %><% if (user.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" class="h-8 w-8 inline-block"<% } %></h2>
+    </div>
+    <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
+</body>
+</html>
