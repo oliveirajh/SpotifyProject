@@ -39,7 +39,7 @@
         <img src="<%= data.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= data.followers %></p>
         <p class="text-white text-center font-bold text-base lg:text-xl">Welcome back, <%= data.name %><% if (data.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" alt="Verified icon" class="h-5 inline-block"> <% } %>!</p>
-        <button class="text-white font-[500] bg-[#4444447a] mt-5 py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/favorites'">Favorites</button>
+        <button class="text-white font-[500] bg-[#4444447a] mt-5 py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700" onclick="window.location.href='/home/favorites'">Favorites</button>
     </div>
     
     <div class="lg:flex lg:flex-row items-center gap-2 lg:rounded-lg lg:gap-2 bg-transparent justify-between lg:justify-center mx-auto w-fit lg:w-7/12">

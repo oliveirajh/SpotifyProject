@@ -28,7 +28,7 @@ const PORT = process.env.PORT || 3001;
 
 // Routes
 app.use('/spotify', require('./routes/spotifyRoutes'));
-app.use('/home', require('./routes/homeRoutes'));
+app.use('/home', require('./routes/homeRoutes'), require('./routes/favoritesRoutes'));
 app.use('/play', require('./routes/playTrackRoutes'));
 app.use('/artist', require('./routes/artistRoutes'));
 app.use('/redirect', require('./routes/redirectRoutes'));
