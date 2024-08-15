@@ -20,9 +20,25 @@
             </a>
         </div>
     </div>
-    <div id="header" class="bg-transparent flex h-fit flex-col items-center mx-auto p-5 w-screen">
-        <img id="profilePic" src="<%= user.images[1].url %>" class="w-48 h-48 rounded-full border-2 border-transparent shadow-sm mb-3">
-        <h2 class="text-center text-[#dfdfdf] font-bold text-4xl"><%= user.name %><% if (user.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" class="h-8 w-8 inline-block"<% } %></h2>
+    <div id="header" class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-fit">
+        <img id="profilePic" src="<%= user.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3">
+        <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= user.followers %></p>
+        <h2 class="text-white text-center font-bold text-base lg:text-xl"><%= user.name %><% if (user.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" class="h-8 w-8 inline-block"<% } %></h2>
+    </div>
+    <div id="fav-artists" class="bg-[#181818] h-[75%] lg:h-[85%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-fit mx-auto">
+        <h2 class="text-white font-semibold">Favorite Artists</h2>
+        <div class="flex justify-between py-3 gap-2">
+            <% artists.forEach((artist) => {%>
+                <div class="text-center flex-col items-center">
+                    <img src="<%= artist.images[0].url %>" class="w-20 h-20 rounded-full">
+                    <% if (artist.name.length > 10)  {%>
+                        <p class="text-white text-sm font-bold hover:underline"><%= artist.name.substring(0, 10) + '...' %></p>
+                    <% } else { %>
+                        <p class="text-white text-sm font-bold hover:underline"><%= artist.name %></p>
+                    <% } %>
+                </div>
+            <% }) %>
+        </div>
     </div>
     <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
 </body>
