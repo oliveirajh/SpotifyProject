@@ -85,12 +85,12 @@ exports.search = async (req, res) => {
                 res.render('searchAlbum', { data: search.data, search: req.params.track, error: req.query.error });
                 break;
             default:
-                res.redirect('/spotify/auth');
+                res.redirect('/home');
         }
 
     } catch (error) {
         console.log(error);
-        res.redirect("/spotify/auth");
+        res.redirect("/home");
     }
 }
 

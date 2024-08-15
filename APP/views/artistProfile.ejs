@@ -12,9 +12,9 @@
 
     <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto">
         <div class="flex items-center">
-            <form action="/spotify/auth" method="get">
+            <a href="/home/search/<%= artist.name.toLowerCase() %>?type=artist">
                 <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Voltar</button>
-            </form>
+            </a>
             
             <a href="#">
                 <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo">
@@ -25,7 +25,7 @@
         <form id="searchForm" method="POST">
             <div class="">
                 <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white pr-5 pl-4 py-1 w-[180px] lg:w-[300px] outline-4 outline outline-[#4444447a] rounded-l-3xl" placeholder="Search for a song...">
-                <select class="bg-[#4444447a] text-white appearance-none pl-3 pr-6 py-2 focus:outline-none rounded-r-3xl bg-[url('src/images/arrow.svg')] bg-no-repeat bg-[length:15px] bg-[position:calc(100%-10px)_center]" name="type" id="type">
+                <select class="bg-[#4444447a] text-white appearance-none pl-3 pr-6 py-2 focus:outline-none rounded-r-3xl bg-[url('/src/images/arrow.svg')] bg-no-repeat bg-[length:15px] bg-[position:calc(100%-10px)_center]" name="type" id="type">
                     <option value="track" class="bg-[#444444] text-white">Track</option>
                     <option value="artist" class="bg-[#444444] text-white">Artist</option>
                     <option value="album" class="bg-[#444444] text-white">Album</option>
