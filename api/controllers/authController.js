@@ -60,3 +60,34 @@ exports.spotifyCallback = async (req, res) => {
         res.status(500).send('Internal Server Error: ' + err);
     }
 }
+
+exports.getRefreshToken = async (req, res) => {
+    const refreshToken = req.body.refreshToken
+    const clientId = process.env.SPOTIFY_CLIENT_ID;
+    const clientSecret = process.env.SPOTIFY_CLIENT_SECRET;
+    const authHeader = Buffer.from(`${clientId}:${clientSecret}`).toString('base64');
+
+    try {
+        const response = await axios.post(
+            'https://accounts.spotify.com/api/token',
+            querystring.stringify({
+                grant_type: 'refresh_token',
+                refresh_token: refreshToken,
+            }),
+            {
+                headers: {
+                    'Authorization': `Basic ${authHeader}`,
+                    'Content-Type': 'application/x-www-form-urlencoded',
+                },
+            }
+        );
+
+        res.json({
+            accessToken: response.data.access_token,
+            refreshToken: response.data.refresh_token || refreshToken, // Atualiza o refresh token, se necessário
+        });
+    } catch (error) {
+        console.error('Erro ao atualizar o token', error.response.data);
+        throw error;
+    }
+}

@@ -5,6 +5,7 @@ exports.index = async (req, res) => {
     try {
         req.session.accessToken = req.query.access_token;
         req.session.refreshToken = req.query.refresh_token;
+        req.session.tokenExpiry = Date.now() + 3600 * 1000;
 
         const accessToken = req.query.access_token;
         const refreshToken = req.query.refresh_token;
