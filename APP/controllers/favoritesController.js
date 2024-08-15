@@ -33,7 +33,7 @@ exports.getFavorites = async (req, res) => {
         res.render('favorites',{
             user: userData.data,
             artists: favoriteArtists.data,
-            songs: favoriteSongs.data.items,
+            songs: favoriteSongs.data,
             /*playlists: favoritePlaylists.data,*/
         })
     } catch (err) {
