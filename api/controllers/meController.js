@@ -6,6 +6,7 @@ exports.getProfile = async (req, res) => {
     try{
         const profileData = await spotifyServices.getMyProfile(req.headers.authorization);
         res.status(200).json({
+            id: profileData.data.id,
             name: profileData.data.display_name,
             email: profileData.data.email,
             country: profileData.data.country,
