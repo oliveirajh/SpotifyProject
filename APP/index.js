@@ -32,6 +32,7 @@ app.use('/home', require('./routes/homeRoutes'), require('./routes/favoritesRout
 app.use('/play', require('./routes/playTrackRoutes'));
 app.use('/artist', require('./routes/artistRoutes'));
 app.use('/redirect', require('./routes/redirectRoutes'));
+app.use('/album', require('./routes/albumRoutes'));
 
 app.get('/', (req, res) => {
     res.render('index');
