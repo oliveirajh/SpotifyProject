@@ -147,3 +147,22 @@ exports.getRecentlyPlayed = async (req, res) => {
         sendError(res,err);
     }
 }
+
+exports.getMyPlaylists = async (req, res) => {
+    try{
+        const { limit, offset } = req.query;
+        access_token = req.headers.authorization;
+        const myPlaylists = await spotifyServices.getMyPlaylists(access_token, limit, offset);
+        res.status(200).json(
+            myPlaylists.data.items.map(playlist => ({
+                id: playlist.id,
+                name: playlist.name,
+                description: playlist.description,
+                images: playlist.images,
+                url: playlist.external_urls.spotify
+            }))
+        );
+    }catch(err){
+        sendError(res,err);
+    }
+}

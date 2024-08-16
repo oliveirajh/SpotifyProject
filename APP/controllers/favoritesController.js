@@ -24,17 +24,17 @@ exports.getFavorites = async (req, res) => {
         });
 
         //Rota pendente//
-        /*const favoritePlaylists = await axios.get(`${API_URL}/users/${userData.data.id}/playlists?limit=4`, {
+        const favoritePlaylists = await axios.get(`${API_URL}/me/playlists`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }
-        });*/
+        });
 
         res.render('favorites',{
             user: userData.data,
             artists: favoriteArtists.data,
             songs: favoriteSongs.data,
-            /*playlists: favoritePlaylists.data,*/
+            playlists: favoritePlaylists.data
         })
     } catch (err) {
         res.send(err);

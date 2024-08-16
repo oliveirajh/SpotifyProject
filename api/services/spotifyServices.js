@@ -84,6 +84,19 @@ exports.getRecentlyPlayed = async(access_token, limit = 5) => {
     })
 }
 
+exports.getMyPlaylists = async(access_token, limit = 5, offset = 0) => {
+    const params = new URLSearchParams({
+        limit: limit.toString(),
+        offset: offset.toString()
+    })
+
+    const url = `https://api.spotify.com/v1/me/playlists?${params.toString()}`;
+    return await axios.get(url, {
+        headers: getHeaders(access_token)
+    })
+}
+
+
 //Interações com o Player
 
 exports.getCurrentTrackPlaying = async(access_token) => {
