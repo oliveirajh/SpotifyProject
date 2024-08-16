@@ -67,6 +67,7 @@ exports.getMyTopTracks = async (req, res) => {
         const topTracks = await spotifyServices.getMyTopTracks(access_token, limit, offset);
         res.status(200).json(
             topTracks.data.items.map(track => ({
+                id: track.id,
                 name: track.name,
                 artists: track.artists.map(artist => {
                     return {
