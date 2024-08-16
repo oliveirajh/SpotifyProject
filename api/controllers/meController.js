@@ -46,6 +46,7 @@ exports.getMyTopArtists = async (req, res) => {
         const topArtists = await spotifyServices.getMyTopArtists(access_token, limit, offset);
         res.status(200).json(
             topArtists.data.items.map(artist => ({
+                id: artist.id,
                 name: artist.name,
                 genres: artist.genres,
                 followers: artist.followers.total,
