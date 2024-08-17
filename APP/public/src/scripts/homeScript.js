@@ -30,6 +30,21 @@ document.getElementById('type').addEventListener('change', function() {
     }
 });
 
+const errorMessage = document.getElementById('errorMessage');
+if (errorMessage) {
+    errorMessage.style.transition = 'opacity 0.5s ease-in-out';
+    errorMessage.style.opacity = '1';
+
+    setTimeout(() => {
+        errorMessage.style.opacity = '0';
+
+        setTimeout(() => {
+            errorMessage.style.display = 'none';
+        }, 500);
+    }, 2000);
+}
+
+
 currentTrack.addEventListener('mouseover', () => {
     currentTrackImg.classList.remove('lg:h-24', 'lg:mr-3', 'lg:w-36');
     trackName.classList.remove('text-sm');

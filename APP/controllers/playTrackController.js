@@ -26,7 +26,7 @@ exports.play = async (req, res) => {
         
             } catch (error) {
                 if (error.response.status === 404) {
-                    res.redirect(`${decodeURIComponent(req.query.redirect)}&error=device_not_found`);
+                    res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
                 }
             }
             break;
@@ -50,12 +50,12 @@ exports.play = async (req, res) => {
         
             } catch (error) {
                 if (error.response.status === 404) {
-                    res.redirect(`${decodeURIComponent(req.query.redirect)}&error=device_not_found`);
+                    res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
                 }
             }
             break;
         case 'artist':
-            // Redirecionar para página do artista
+            res.redirect(`/artist/${search}`);
             break;
         default:
             res.redirect('/spotify/auth');

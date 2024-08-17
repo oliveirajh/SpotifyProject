@@ -83,14 +83,6 @@
         </div>
     </div>
 
-
-    <div class="flex justify-between flex-row bg-[#181818] h-30 lg:rounded-lg rounded-none p-5 mb-10 lg:mb-0 mx-auto w-full lg:w-7/12 mt-2">
-        <div class="items-center py-3">
-            <h2 class="text-white font-semibold">Minutes listened this month</h2>
-            <p class="text-white text-xl font-bold"><%= totalMinutes %> minutes</p>
-        </div>
-    </div>
-
     <!-- Current Track Card -->
     <% if (!currentTrack.message && currentTrack) {%>
         <div class="lg:flex transition-all items-center lg:hover:block bg-[#31313165] backdrop-blur-sm lg:right-3 lg:bottom-5 lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464] hidden" id="currentTrack">
@@ -125,6 +117,12 @@
         </div>
         
     <% }; %>
+
+    <% if (error) { %>
+        <div id="errorMessage" class="bg-[#e76c6c] absolute bottom-2 right-2 ml-2 text-white p-5 rounded-md w-1/2 mx-auto mt-5">
+            <p>No available devices found for playback. Please ensure that a compatible device is active and try again. If the issue persists, try starting playback on another device first.</p>
+        </div>
+    <% } %>
     
     <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
     <script src="/src/scripts/homeScript.js"></script>

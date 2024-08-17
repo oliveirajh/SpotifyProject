@@ -37,29 +37,12 @@ exports.index = async (req, res) => {
             }
         });
 
-        function getAllMinutes(allRecentTracks) {
-            const currentMonth = new Date().getMonth();
-            let totalMinutes = 0;
-            
-            if (allRecentTracks && Array.isArray(allRecentTracks.data)) {
-                allRecentTracks.data.forEach(item => {
-                    const playedAt = new Date(item.played_at);
-                    if (playedAt.getMonth() === currentMonth) {
-                        const trackDurationMs = item.duration_ms;
-                        totalMinutes += trackDurationMs / 60000;
-                    }
-                });
-            }
-            
-            return Math.round(totalMinutes);
-        }
-
         res.render('home',{
             data: userData.data,
             playlists: recomendPlaylist.data,
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
-            totalMinutes: getAllMinutes(allRecentTracks),
+            error: req.query.error
         })
     } catch (error) {
         res.send(error);
