@@ -39,7 +39,7 @@
             <a href="/artist/<%= album.artists[0].id %>"><p class="text-center text-white font-bold text-base mt-1 hover:underline hover:text-[#1db954]"><%= album.artists[0].name %></p></a>
         </div>
         <div class="bg-[#181818] h-[75%] lg:h-[85%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[500px] w-[385px] mx-auto lg:mx-0">
-            <p class="text-base text-white font-bold">Tracks - <%= album.total_tracks %></p>
+            <p class="text-base text-white ml-3 font-bold">Tracks - <%= album.total_tracks %></p>
             <div class="justify-center gap-2 lg:gap-3 lg:ml-2">
                 <% album.tracks.forEach((tracks) => {%>
                     <div class="text-start items-center flex flex-row gap-2 lg:gap-3 my-1 ms-2">
@@ -53,6 +53,7 @@
                 <% }) %>
             </div>
         </div>
+        <button class="rounded-full w-14 h-14 bg-[#20d465] text-center hover:scale-110 mb-2 ml-3 hover:bg-[#38e77b] lg:right-3 lg:bottom-5 lg:fixed lg:mr-10 lg:mb-6"></button>
     </div>
 
     <script src="/src/scripts/searchScript.js"></script>
