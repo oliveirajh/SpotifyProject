@@ -55,7 +55,7 @@ exports.play = async (req, res) => {
             }
             break;
         case 'artist':
-            // Redirecionar para página do artista
+            res.redirect(`/artist/${search}`);
             break;
         default:
             res.redirect('/spotify/auth');
