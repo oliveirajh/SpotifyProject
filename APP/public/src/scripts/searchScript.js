@@ -21,4 +21,5 @@ document.getElementById('type').addEventListener('change', function() {
         this.classList.remove('pr-9');
         this.classList.add('pr-6');
     }
+    
 });
