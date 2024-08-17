@@ -34,7 +34,7 @@
     <div class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-fit">
         <img id="profilePic" src="<%= user.images[1].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3">
         <p class="text-white mb-3 text-xs border-[#20d46585] border-b-[2px] p-1">Followers: <%= user.followers %></p>
-        <h2 class="text-white text-center font-bold text-base lg:text-xl"><%= user.name %><% if (user.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" class="h-8 w-8 inline-block"<% } %></h2>
+        <h2 class="text-white text-center font-bold text-base lg:text-xl"><%= user.name %><% if (user.product === 'premium') { %> <img src="/src/images/verifiedIcon.svg" class="w-5 inline-block"<% } %></h2>
     </div>
     <div class="lg:flex lg:flex-row gap-2 lg:rounded-lg lg:gap-2 bg-transparent justify-between lg:justify-center mx-auto w-fit lg:w-7/12">
         <div class="lg:flex lg:flex-col lg:mx-auto lg:items-start lg:gap-3">
@@ -43,7 +43,7 @@
                 <div class="flex justify-between py-3 gap-2 lg:gap-0">
                     <% artists.forEach((artist) => {%>
                         <div class="text-center flex-col items-center hover:scale-110 transition-all">
-                            <a href="/artist/<%= artist.id %>"><img src="<%= artist.images[0].url %>" class="w-20 h-20 rounded-full lg:w-24 lg:h-24"></a>
+                            <a href="/artist/<%= artist.id %>"><img src="<%= artist.images[0].url %>" class="w-20 rounded-full mb-2"></a>
                             <% if (artist.name.length > 10)  {%>
                                 <a href="/artist/<%= artist.id %>"><p class="text-white text-sm font-bold hover:underline"><%= artist.name.substring(0, 10) + '...' %></p></a>
                             <% } else { %>
@@ -58,7 +58,7 @@
                 <div class="flex justify-between py-3 gap-2 lg:gap-0">
                     <% playlists.forEach((playlist) => {%>
                         <div class="text-center flex flex-col items-center hover:scale-110 transition-all w-full">
-                            <a href="<%= playlist.url %>" target="_blank"><img src="<%= playlist.images[0].url %>" class="w-full rounded-md lg:mb-1 lg:w-24 lg:h-24"></a>
+                            <a href="<%= playlist.url %>" target="_blank"><img src="<%= playlist.images[0].url %>" class="w-20 rounded-lg mb-2"></a>
                             <% if (playlist.name.length > 10)  {%>
                                 <a href="<%= playlist.url %>" target="_blank"><p class="text-white text-xs font-bold hover:underline"><%= playlist.name.substring(0, 10) + '...' %></p></a>
                             <% } else { %>
@@ -74,12 +74,12 @@
             <div class="justify-between gap-2 lg:gap-3 lg:ml-2">
                 <% songs.forEach((song) => {%>
                     <div class="text-start items-center flex flex-row gap-2 lg:gap-3 my-1 ms-2 hover:gap-3 hover:scale-110 transition-all">
-                        <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><img src="<%= song.album.images[0].url %>" class="w-10 h-10 lg:w-20 lg:h-20 lg:my-1 rounded-lg"></a>
+                        <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><img src="<%= song.album.images[0].url %>" class="w-10 h-10 lg:w-20 lg:h-20 lg:my-2 rounded-lg"></a>
                         <div>
                             <% if (song.name.length > 25)  {%>
-                                <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><p class="text-white text-md font-bold hover:underline lg:mb-0"><%= song.name.substring(0, 10) + '...' %></p></a>
+                                <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><p class="text-white text-sm font-bold hover:underline lg:mb-0"><%= song.name.substring(0, 10) + '...' %></p></a>
                             <% } else { %>
-                                <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><p class="text-white text-md font-bold hover:underline lg:mb-0"><%= song.name %></p></a>
+                                <a href="/play/<%= song.id %>?type=track&redirect=%2Fhome/favorites"><p class="text-white text-sm font-bold hover:underline lg:mb-0"><%= song.name %></p></a>
                             <% } %>
     
                             <% if (song.artists[0].name > 25) {%>
