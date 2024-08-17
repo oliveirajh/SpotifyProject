@@ -10,20 +10,20 @@
 </head>
 <body class="selection:bg-[#20d46573] pb-5">
 
-    <!-- Navbar -->
-    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto p-5">
+    <div id="navbar" class="flex lg:justify-between justify-center lg:flex-row flex-col items-center w-full mx-auto">
         <div class="flex items-center">
             <a href="/home/search/<%= artist.name.toLowerCase() %>?type=artist">
                 <button class="text-white font-[500] bg-[#4444447a] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Voltar</button>
             </a>
             
             <a href="#">
-                <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo" class="h-8">
+                <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo">
             </a>
+            
         </div>
 
-        <form id="searchForm" method="POST" class="w-full lg:w-auto mt-4 lg:mt-0">
-            <div class="flex items-center justify-center lg:justify-end">
+        <form id="searchForm" method="POST">
+            <div class="">
                 <input type="text" autocomplete="off" name="search" id="search" class="bg-transparent text-white pr-5 pl-4 py-1 w-[180px] lg:w-[300px] outline-4 outline outline-[#4444447a] rounded-l-3xl" placeholder="Search for a song...">
                 <select class="bg-[#4444447a] text-white appearance-none pl-3 pr-6 py-2 focus:outline-none rounded-r-3xl bg-[url('/src/images/arrow.svg')] bg-no-repeat bg-[length:15px] bg-[position:calc(100%-10px)_center]" name="type" id="type">
                     <option value="track" class="bg-[#444444] text-white">Track</option>
@@ -35,9 +35,8 @@
         </form>
     </div>
 
-    <!-- Artista -->
-    <div class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-full lg:w-1/2 text-center">
-        <img src="<%= artist.images[0].url %>" class="w-28 lg:w-36 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
+    <div class="bg-transparent flex h-fit flex-col items-center mx-auto p-10 w-fit">
+        <img src="<%= artist.images[0].url %>" class="w-28 rounded-full border-2 border-[#20d465] mb-3" alt="Profile picture">
         <p class="text-white mb-3 text-sm bg-[#1db954] rounded-full px-4 py-2 inline-block shadow-md">
             <span class="font-bold">Followers:</span> <%= artist.followers.toLocaleString() %>
         </p>    
@@ -48,48 +47,60 @@
             <% } %>
         </p>        
 
-        <p class="text-white font-semibold py-2 px-6 text-sm">Genres:</p>
-        <div class="flex flex-wrap justify-center gap-2">
-            <% artist.genres.forEach((genre) => { %>
-                <p class="bg-[#1db9543b] border-2 border-[#1db954] text-white rounded-full px-2 py-1 text-xs lg:text-base"><%= `${genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase()}` %></p>
-            <% }) %>
-        </div>
+            <p class="text-white font-semibold py-2 px-6 text-sm">Genres:</p>
+            <div class="flex">
+                <% artist.genres.forEach((genre) => { %>
+                    <p class="bg-[#1db9543b] border-2 border-[#1db954] text-white rounded-full px-2 py-1 ml-2 text-xs lg:text-base"><%= `${genre.charAt(0).toUpperCase() + genre.slice(1).toLowerCase()}` %></p>
+                <% }) %>
+            </div>
+        </div>   
     </div>
 
-    <!-- Álbuns e Top Tracks -->
-    <div class="flex flex-col lg:flex-row items-center gap-2 lg:gap-4 bg-transparent justify-between lg:justify-center mx-auto w-full lg:w-3/4 p-5">
+    <div class="lg:flex lg:flex-row items-center gap-2 lg:rounded-lg lg:gap-2 bg-transparent justify-between lg:justify-center mx-auto w-fit lg:w-7/12">
         
-        <div class="bg-[#181818] lg:rounded-lg rounded-none p-5 w-full lg:w-1/2 mb-4 lg:mb-0">
-            <h2 class="text-white font-semibold mb-4">Álbuns</h2>
-            <div class="grid grid-cols-2 gap-4 lg:grid-cols-2">
+        <div class="bg-[#181818] h-[75%] lg:h-[85%] lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-fit">
+            <h2 class="text-white font-semibold">Álbuns</h2>
+            <div class="flex justify-between py-3 gap-2">
                 <% albums.slice(0, 4).forEach((album) => { %>
-                    <div class="text-center flex flex-col items-center hover:scale-110 transition-all w-full">
+                    <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
                         <a href="<%= album.url %>" target="_blank">
-                            <img src="<%= album.images[1].url %>" class="w-full rounded-lg mb-1" alt="Album cover">
+                            <img src="<%= album.images[1].url %>" class="w-20 rounded-lg mb-1" alt="Album cover">
                         </a>
-                        <p class="text-white text-sm font-bold hover:underline lg:mb-4"><%= album.name.length > 10 ? album.name.substring(0, 10) + '...' : album.name %></p>
+                        <% if (album.name.length > 10) { %>
+                            <p class="text-white text-sm font-bold hover:underline"><%= album.name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-white text-sm font-bold hover:underline"><%= album.name %></p>
+                        <% } %>
                     </div>
                 <% }) %> 
             </div>
         </div>
         
-        <div class="bg-[#181818] lg:rounded-lg rounded-none p-5 w-full lg:w-1/2">
-            <h2 class="text-white font-semibold mb-4">Top Tracks</h2>
-            <div class="grid grid-cols-2 gap-4 lg:grid-cols-2">
+        <div class="bg-[#181818] h-[75%] lg:h-full lg:rounded-lg rounded-none p-5 mb-2 lg:mb-0 lg:w-[600px] w-full">
+            <h2 class="text-white font-semibold">Top Tracks</h2>
+            <div class="flex justify-between py-3 gap-2">
                 <% tracks.slice(0, 4).forEach((track) => { %>
-                    <div class="text-center flex flex-col items-center hover:scale-110 transition-all w-full">
+                    <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
                         <a href="<%= track.url %>" target="_blank">
-                            <img src="<%= track.album.images[1].url %>" class="w-full rounded-lg mb-1" alt="Track cover">
+                            <img src="<%= track.album.images[1].url %>" class="w-20 rounded-lg mb-1" alt="Track cover">
                         </a>
-                        <p class="text-white text-sm font-bold hover:underline"><%= track.name.length > 10 ? track.name.substring(0, 10) + '...' : track.name %></p>
-                        <p class="text-[#ffffff65] text-xs hover:text-white inline-block"><%= track.artists[0].name.length > 10 ? track.artists[0].name.substring(0, 10) + '...' : track.artists[0].name %></p>
+                        <% if (track.name.length > 10) { %>
+                            <p class="text-white text-sm font-bold hover:underline"><%= track.name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-white text-sm font-bold hover:underline"><%= track.name %></p>
+                        <% } %>
+                        <% if (track.artists[0].name.length > 10) { %>
+                            <p class="text-[#ffffff65] text-xs hover:text-white inline-block"><%= track.artists[0].name.substring(0, 10) + '...' %></p>
+                        <% } else { %>
+                            <p class="text-[#ffffff65] text-xs hover:text-white inline-block"><%= track.artists[0].name %></p>
+                        <% } %>
                     </div>
                 <% }) %>  
             </div>
         </div>
     </div>
 
-    <footer class="text-[#ffffff23] text-center mt-5 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
+    <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
     <script src="/src/scripts/homeScript.js"></script>
 </body>
 </html>
