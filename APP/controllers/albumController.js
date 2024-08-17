@@ -13,6 +13,7 @@ exports.getAlbum = async (req, res) => {
         })
         res.render('album',{
             album: getAlbum.data,
+            albumID: req.params.id
         })
     } catch (err) {
         res.send(err);
