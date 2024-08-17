@@ -125,6 +125,12 @@
         </div>
         
     <% }; %>
+
+    <% if (error) { %>
+        <div id="errorMessage" class="bg-[#ff0000] absolute bottom-2 right-2 ml-2 text-white p-2 rounded-md w-1/2 mx-auto mt-5">
+            <p>No available devices found for playback. Please ensure that a compatible device is active and try again. If the issue persists, try starting playback on another device first.</p>
+        </div>
+    <% } %>
     
     <footer class="hidden lg:absolute bottom-2 text-[#ffffff23] left-2 select-none text-sm lg:text-base">All rights reserved - CompassUOL - AI/ML - Grupo 7</footer>
     <script src="/src/scripts/homeScript.js"></script>

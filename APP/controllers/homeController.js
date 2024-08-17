@@ -60,6 +60,7 @@ exports.index = async (req, res) => {
             recentTracks: recentTracks.data,
             currentTrack: currentTrack.data,
             totalMinutes: getAllMinutes(allRecentTracks),
+            error: req.query.error
         })
     } catch (error) {
         res.send(error);
