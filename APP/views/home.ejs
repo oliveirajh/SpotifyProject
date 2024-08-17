@@ -83,14 +83,6 @@
         </div>
     </div>
 
-
-    <div class="flex justify-between flex-row bg-[#181818] h-30 lg:rounded-lg rounded-none p-5 mb-10 lg:mb-0 mx-auto w-full lg:w-7/12 mt-2">
-        <div class="items-center py-3">
-            <h2 class="text-white font-semibold">Minutes listened this month</h2>
-            <p class="text-white text-xl font-bold"><%= totalMinutes %> minutes</p>
-        </div>
-    </div>
-
     <!-- Current Track Card -->
     <% if (!currentTrack.message && currentTrack) {%>
         <div class="lg:flex transition-all items-center lg:hover:block bg-[#31313165] backdrop-blur-sm lg:right-3 lg:bottom-5 lg:fixed lg:min-w-56 p-3 lg:p-3 rounded-md border-[1px] border-[#20d464] hidden" id="currentTrack">
