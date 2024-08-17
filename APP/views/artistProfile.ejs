@@ -62,7 +62,7 @@
             <div class="flex justify-between py-3 gap-2">
                 <% albums.slice(0, 4).forEach((album) => { %>
                     <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
-                        <a href="<%= album.url %>" target="_blank">
+                        <a href="/album/<%= album.id %>">
                             <img src="<%= album.images[1].url %>" class="w-20 rounded-lg mb-1" alt="Album cover">
                         </a>
                         <% if (album.name.length > 10) { %>
