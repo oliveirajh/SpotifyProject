@@ -16,7 +16,7 @@
                 <button class="text-black font-[500] bg-[#20d464] py-2 px-[15px] rounded-3xl text-sm hover:bg-[#20d4652a] transition-all duration-700 m-5">Logout</button>
             </form>
             
-            <a href="#">
+            <a href="/home">
                 <img src="/src/images/SpotifyAPILogo.svg" alt="Spotify API Logo">
             </a>
             
@@ -49,7 +49,7 @@
             <div class="flex justify-between py-3 gap-2">
                 <% recentTracks.forEach((item) => {%>
                     <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
-                        <a href="/play/<%= item.id %>?redirect=%2Fspotify%2Fauth"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
+                        <a href="/play/<%= item.id %>?type=track&redirect=%2Fhome"><img src="<%= item.album.images[0].url %>" class="w-20 rounded-lg mb-1" alt="Album cover"></a>
                         <% if (item.name.length > 10)  {%>
                             <p class="text-white text-sm font-bold hover:underline"><%= item.name.substring(0, 10) + '...' %></p>
                         <% } else { %>

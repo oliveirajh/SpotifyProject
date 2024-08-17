@@ -23,8 +23,7 @@ exports.getFavorites = async (req, res) => {
             }
         });
 
-        //Rota pendente//
-        const favoritePlaylists = await axios.get(`${API_URL}/me/playlists`, {
+        const favoritePlaylists = await axios.get(`${API_URL}/me/playlists?limit=4`, {
             headers: {
                 'Authorization': `Bearer ${accessToken}`
             }

@@ -27,6 +27,7 @@ exports.getArtistAlbums = async (req, res) => {
         const albums = await spotifyServices.getArtistAlbums(access_token, id, limit, offset);
         res.status(200).json(
             albums.data.items.map(album => ({
+                id: album.id,
                 name: album.name,
                 release_date: album.release_date,
                 total_tracks: album.total_tracks,
