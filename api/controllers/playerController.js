@@ -46,7 +46,6 @@ exports.playTrack = async (req, res) => {
                 try {
                     const response = await spotifyServices.playTrack(access_token, search);
                     if(response.status === 204){
-                        console.log('playing');
                         res.status(200).send('playing');
                     }
                 } catch (error) {
@@ -68,13 +67,13 @@ exports.playTrack = async (req, res) => {
                 }
                 break;
             default:
-
                 res.status(400).json({
                     message: 'Bad request'
                 });
                 break;
         }
     }catch(err){
+        console.log(err);
         sendError(res,err);
     }
 }

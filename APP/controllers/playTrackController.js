@@ -22,8 +22,10 @@ exports.play = async (req, res) => {
             }
         }
     }catch(err){
-        if(err.response.status === 404) {
+        if(req.query.redirect == '/home' || req.query.redirect == undefined){
             res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
+        }else{
+            res.redirect(`${decodeURIComponent(req.query.redirect)}&error=device_not_found`);
         }
     }
 }; 
