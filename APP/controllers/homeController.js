@@ -72,7 +72,6 @@ exports.search = async (req, res) => {
         }
 
     } catch (error) {
-        console.log(error);
         res.redirect("/home");
     }
 }

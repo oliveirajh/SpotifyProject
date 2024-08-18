@@ -45,7 +45,6 @@ exports.playTrack = async (req, res) => {
             case 'track':
                 try {
                     const response = await spotifyServices.playTrack(access_token, search);
-                    console.log(response);
                     if(response.status === 204){
                         console.log('playing');
                         res.status(200).send('playing');
@@ -60,7 +59,6 @@ exports.playTrack = async (req, res) => {
                 try {
                     const response = await spotifyServices.playAlbum(access_token, search);
                     if(response.status === 204){
-                        console.log('playing');
                         res.status(200).send('playing');
                     }
                 } catch (error) {
@@ -71,14 +69,12 @@ exports.playTrack = async (req, res) => {
                 break;
             default:
 
-                console.log('AQUI CORNO');
                 res.status(400).json({
                     message: 'Bad request'
                 });
                 break;
         }
     }catch(err){
-        console.log(err);
         sendError(res,err);
     }
 }
