@@ -56,7 +56,6 @@ exports.search = async (req, res) => {
                 'Authorization': `Bearer ${req.session.accessToken}`
             }
         });
-        console.log(req.query);
 
         switch (req.query.type) {
             case 'track':

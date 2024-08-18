@@ -106,7 +106,6 @@ exports.getCurrentTrackPlaying = async(access_token) => {
 }
 
 exports.playAlbum = async(access_token, album_id) => {
-    console.log(access_token)
     return await axios.put(`https://api.spotify.com/v1/me/player/play`, { 
         context_uri: `spotify:album:${album_id}`,
         offset: { position: 0 } 

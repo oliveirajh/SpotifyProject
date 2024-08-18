@@ -73,7 +73,6 @@ exports.playTrack = async (req, res) => {
                 break;
         }
     }catch(err){
-        console.log(err);
         sendError(res,err);
     }
 }
