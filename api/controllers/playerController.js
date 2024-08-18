@@ -34,3 +34,51 @@ exports.getCurrentTrack = async (req, res) => {
         sendError(res,err);
     }
 }
+
+exports.playTrack = async (req, res) => {
+    const { search } = req.params;
+    const access_token = req.headers.authorization;
+    const { type } = req.query;
+
+    try{
+        switch(type) {
+            case 'track':
+                try {
+                    const response = await spotifyServices.playTrack(access_token, search);
+                    console.log(response);
+                    if(response.status === 204){
+                        console.log('playing');
+                        res.status(200).send('playing');
+                    }
+                } catch (error) {
+                    if (error.response.status === 404) {
+                        res.status(404).send('error_device')
+                    }
+                }
+                break;
+            case 'album':
+                try {
+                    const response = await spotifyServices.playAlbum(access_token, search);
+                    if(response.status === 204){
+                        console.log('playing');
+                        res.status(200).send('playing');
+                    }
+                } catch (error) {
+                    if (error.response.status === 404) {
+                        res.status(404).send('error_device')
+                    }
+                }
+                break;
+            default:
+
+                console.log('AQUI CORNO');
+                res.status(400).json({
+                    message: 'Bad request'
+                });
+                break;
+        }
+    }catch(err){
+        console.log(err);
+        sendError(res,err);
+    }
+}

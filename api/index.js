@@ -28,6 +28,7 @@ app.use('/artists', artistRoutes);
 app.use('/albums', albumRoutes);
 
 
+
 app.listen(PORT, () => {
     console.log(`Server is running on: http://localhost:${PORT}`);
 });

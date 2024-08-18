@@ -6,7 +6,7 @@ exports.search = async (req, res) => {
     try{
         const { type, name } = req.params;
         const { limit } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const response = await spotifyServices.search(access_token, type, name, limit);
 
         if(Object.keys(response.data).length === 0){

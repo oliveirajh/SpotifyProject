@@ -105,6 +105,24 @@ exports.getCurrentTrackPlaying = async(access_token) => {
     })
 }
 
+exports.playAlbum = async(access_token, album_id) => {
+    console.log(access_token)
+    return await axios.put(`https://api.spotify.com/v1/me/player/play`, { 
+        context_uri: `spotify:album:${album_id}`,
+        offset: { position: 0 } 
+    }, {
+        headers: getHeaders(access_token)
+    })
+}
+
+exports.playTrack = async(access_token, track_id) => {
+    return await axios.put(`https://api.spotify.com/v1/me/player/play`, {
+        uris: [`spotify:track:${track_id}`]
+    }, {
+        headers: getHeaders(access_token)
+    })
+}
+
 //Search
 
 exports.search = async (access_token, type, name, limit = 30) => {

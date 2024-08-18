@@ -23,7 +23,7 @@ exports.getProfile = async (req, res) => {
 exports.getMyRecommendations = async (req, res) => {
     try{
         const { limit, offset } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const recommendations = await spotifyServices.getMyRecommendations(access_token, limit, offset);
         res.status(200).json(
             recommendations.data.playlists.items.map(playlist => ({
@@ -42,7 +42,7 @@ exports.getMyRecommendations = async (req, res) => {
 exports.getMyTopArtists = async (req, res) => {
     try{
         const { limit, offset } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const topArtists = await spotifyServices.getMyTopArtists(access_token, limit, offset);
         res.status(200).json(
             topArtists.data.items.map(artist => ({
@@ -63,7 +63,7 @@ exports.getMyTopArtists = async (req, res) => {
 exports.getMyTopTracks = async (req, res) => {
     try{
         const { limit, offset } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const topTracks = await spotifyServices.getMyTopTracks(access_token, limit, offset);
         res.status(200).json(
             topTracks.data.items.map(track => ({
@@ -93,7 +93,7 @@ exports.getMyTopTracks = async (req, res) => {
 exports.getSavedTracks =  async (req,res) => {
     try{
         const { limit, offset } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const savedTracks = await spotifyServices.getSavedTracks(access_token, limit, offset)
         res.status(200).json(
             savedTracks.data.items.map(track => ({
@@ -122,7 +122,7 @@ exports.getSavedTracks =  async (req,res) => {
 exports.getRecentlyPlayed = async (req, res) => {
     try{
         const { limit } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const recentlyPlayed = await spotifyServices.getRecentlyPlayed(access_token, limit);
         res.status(200).json(
             recentlyPlayed.data.items.map(track => ({
@@ -153,7 +153,7 @@ exports.getRecentlyPlayed = async (req, res) => {
 exports.getMyPlaylists = async (req, res) => {
     try{
         const { limit, offset } = req.query;
-        access_token = req.headers.authorization;
+        const access_token = req.headers.authorization;
         const myPlaylists = await spotifyServices.getMyPlaylists(access_token, limit, offset);
         res.status(200).json(
             myPlaylists.data.items.map(playlist => ({

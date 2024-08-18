@@ -1,63 +1,29 @@
 const axios = require('axios');
 const dotenv = require('dotenv');
+const API_URL = process.env.API_URL;
 
 dotenv.config();
 
 exports.play = async (req, res) => {
-    const { search } = req.params;
-    const { accessToken } = req.session;
-    const { type } = req.query;
+    try{
+        const { search } = req.params;
+        const { accessToken }  = req.session;
+        const { type } = req.query;
 
-    switch(type) {
-        case 'track':
-            try {
+        const playMusic = await axios.get(`${API_URL}/player/play/${search}?type=${type}`, {
+            headers: {
+                'Authorization': `Bearer ${accessToken}`
+            },
+        });
 
-                const response = await axios.put(
-                    `https://api.spotify.com/v1/me/player/play`,
-                    { uris: [`spotify:track:${search}`] },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                );
-
-                res.redirect(decodeURIComponent(req.query.redirect));
-        
-            } catch (error) {
-                if (error.response.status === 404) {
-                    res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
-                }
+        if(playMusic.status === 200) {
+            if(playMusic.data == 'playing') {
+                res.redirect(`${decodeURIComponent(req.query.redirect)}`);
             }
-            break;
-        case 'album':
-            try {
-
-                const response = await axios.put(
-                    `https://api.spotify.com/v1/me/player/play`,
-                    { 
-                        context_uri: `spotify:album:${search}`,
-                        offset: { position: 0 } 
-                    },
-                    {
-                        headers: {
-                            Authorization: `Bearer ${accessToken}`,
-                        },
-                    }
-                );
-                
-                res.redirect(decodeURIComponent(req.query.redirect));
-        
-            } catch (error) {
-                if (error.response.status === 404) {
-                    res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
-                }
-            }
-            break;
-        case 'artist':
-            res.redirect(`/artist/${search}`);
-            break;
-        default:
-            res.redirect('/spotify/auth');
+        }
+    }catch(err){
+        if(err.response.status === 404) {
+            res.redirect(`${decodeURIComponent(req.query.redirect)}?error=device_not_found`);
+        }
     }
 }; 
