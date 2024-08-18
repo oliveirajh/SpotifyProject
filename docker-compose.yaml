@@ -1,0 +1,23 @@
+services:
+  api:
+    build: ./api/
+    restart: always
+    ports:
+      - "3000:3000"
+    networks:
+      - mynetwork
+
+  web:
+    build: ./APP/
+    restart: always
+    ports:
+      - "80:80"
+    depends_on:
+      - api
+    networks:
+      - mynetwork
+
+
+networks:
+  mynetwork:
+    driver: bridge
