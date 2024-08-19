@@ -80,7 +80,7 @@
             <div class="flex justify-between py-3 gap-2">
                 <% tracks.slice(0, 4).forEach((track) => { %>
                     <div class="text-center flex flex-col items-center hover:scale-110 transition-all">
-                        <a href="<%= track.url %>" target="_blank">
+                        <a href="/play/<%= track.id %>?type=track&redirect=%2Fartist%2F<%= artist.id %>%>">
                             <img src="<%= track.album.images[1].url %>" class="w-20 rounded-lg mb-1" alt="Track cover">
                         </a>
                         <% if (track.name.length > 10) { %>

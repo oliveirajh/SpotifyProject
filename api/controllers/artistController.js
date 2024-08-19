@@ -12,7 +12,8 @@ exports.getArtist = async (req, res) => {
             followers: artist.data.followers.total,
             popularity: artist.data.popularity,
             images: artist.data.images,
-            url: artist.data.external_urls.spotify
+            url: artist.data.external_urls.spotify,
+            id: artist.data.id
         });
     }catch(err){
         sendError(res,err);
@@ -47,6 +48,7 @@ exports.getArtistTopTracks = async (req, res) => {
         const topTracks = await spotifyServices.getArtistTopTracks(access_token, id);
         res.status(200).json(
             topTracks.data.tracks.map(track => ({
+                id: track.id,
                 name: track.name,
                 artists: track.artists.map(artist => {
                     return {
