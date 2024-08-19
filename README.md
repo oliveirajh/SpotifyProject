@@ -368,8 +368,8 @@ Autenticação do usuário com OAuth 2.0.
         "name": "nomeMusica",
         "artists": [
             {
-                "name": "DENNIS",
-                "url": "https://open.spotify.com/artist/6xlRSRMLgZbsSNd0BMobwy"
+                "name": "nomeArtista",
+                "url": "urlPerfilArtista"
             },
             {
                 ...Outros Artistas
@@ -411,9 +411,42 @@ Autenticação do usuário com OAuth 2.0.
      Exemplo de resposta:
   
    ```json
-      {
-       "FALTA ESSE AQUI"
-      }
+       [
+          {
+              "id": "idMusica",
+              "name": "nomeMusica",
+              "artists": [
+                  {
+                      "name": "nomeArtista",
+                      "url": "urlPerfilArtista"
+                  },
+                  {
+                      ...Outros Artistas
+                  }
+              ],
+              "album": {
+                  "name": "nomeAlbum",
+                  "images": [
+                      {
+                          "height": 640,
+                          "url": "urlImagemAlbum",
+                          "width": 640
+                      },
+                      {
+                          ...outras imagens
+                      }
+                  ],
+                  "url": "urlAlbum"
+              },
+              "duration_ms": numberEmMilisegundos,
+              "popularity": number0-100,
+              "url": "urlMusica",
+              "played_at": "dataUltimaVezTocada"
+          },
+          {
+              ...outras musicas
+          }
+      ]   
    ```
   
 - **GET `/me/recommendations`**: Recomendações personalizadas.
