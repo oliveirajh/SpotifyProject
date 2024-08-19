@@ -7,6 +7,7 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
 **Autores**: Giovanna Gutierrez, Gustavo Gutierrez, João Henrique de Oliveira, João Victor Ferrari de Melo
 
 ---
+![](public/src/images/Banners/sumario.png)
 
 ## Sumário 📚
 1. [URL da Aplicação](#url-da-aplicação)
@@ -26,12 +27,14 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
 9. [Telas (APP)](#telas-app)
 
 ---
+![](public/src/images/Banners/URL.png)
 
 ## URL da Aplicação
 
 [Clique aqui para acessar](http://54.211.154.46/)
 
 ---
+![](public/src/images/Banners/Desafios.png)
 
 ## Desafios Encontrados Durante o Desenvolvimento
 
@@ -43,12 +46,14 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
   - Integração de múltiplos endpoints e gestão de permissões
 
 ---
+![](public/src/images/Banners/Tecnologias.png)
 
 ## Tecnologias Utilizadas no Projeto
 
 ![tecnologias](https://skillicons.dev/icons?i=nodejs,aws,docker,express&perline=8)
 
 ---
+![](public/src/images/Banners/Estrutura.png)
 
 ## Estrutura de arquivos/pastas
 
@@ -138,6 +143,7 @@ APP/
 └── tailwind.config.js
 
 ```
+![](public/src/images/Banners/prerequisitos.png)
 
 ## Pré-requisitos
 
@@ -147,6 +153,7 @@ APP/
 - Docker Compose
 
 ---
+![](public/src/images/Banners/instalacao.png)
 
 ## Instalação
 
@@ -201,6 +208,7 @@ APP/
    ```
 
 ---
+![](public/src/images/Banners/Acesso.png)
 
 ## Acessar o APP
 
@@ -209,6 +217,7 @@ Acesse o APP no navegador utilizando o IPv4 da sua máquina ou `localhost`:
 `http://localhost:80` ou `http://[IPv4]:80`
 
 ---
+![](public/src/images/Banners/endpoints.png)
 
 ## Endpoints (API)
 
@@ -254,6 +263,7 @@ Autenticação do usuário com OAuth 2.0.
 - **GET `/albums/:id`**: Dados sobre o álbum.
 
 ---
+![](public/src/images/Banners/Telas.png)
 
 ## Telas (APP)
 
