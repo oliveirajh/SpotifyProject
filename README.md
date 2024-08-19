@@ -233,37 +233,593 @@ Autenticação do usuário com OAuth 2.0.
 - **GET `/auth/callback`**: Callback para troca de código por `access_token` e `refresh_token`.
 - **GET `/auth/refresh`**: Atualiza o `access_token`.
 
+     Exemplo de resposta:
+  
+   ```json
+      {
+       "access_token" : "string",
+       "refresh_token" : "string"
+      }
+   ```
+
 ### Dados do Usuário `/me`
 
 - **GET `/me`**: Retorna os dados do usuário.
+
+     Exemplo de resposta:
+
+     ```json
+      {
+       "id": "string",
+       "name": "string",
+       "email": "string",
+       "country": "BR",
+       "link": "urlParaPerfilNoSite",
+       "product": "tipoDeConta",
+       "followers": number,
+       "images": [
+           {
+               "url": "urlDaImagem",
+               "height": 64,
+               "width": 64
+           },
+           {
+               "url": "urlDaImagem",
+               "height": 300,
+               "width": 300
+           }
+       ]
+      }
+     ```
 - **GET `/me/top-artists`**: Lista dos top artistas do usuário.
+
+     Exemplo de resposta:
+
+     ```json
+         [
+       {
+           "id": "IdDoArtista",
+           "name": "NomeDoArtista",
+           "genres": [
+               "genero1", "genero2"
+           ],
+           "followers": number,
+           "popularity": number0-100,
+           "images": [
+               {
+                   "height": 640,
+                   "url": "urlDaImagem",
+                   "width": 640
+               },
+               {
+                   "height": 320,
+                   "url": "urlDaImagem",
+                   "width": 320
+               },
+               {
+                   "height": 160,
+                   "url": "urlDaImagem",
+                   "width": 160
+               }
+           ],
+           "url": "urlDoPerfilDoArtista"
+       },
+       {
+           ...Outros Artistas
+       }
+      ]
+     ```
 - **GET `/me/top-tracks`**: Lista das top faixas do usuário.
+
+     Exemplo de resposta:
+  
+   ```json
+   [
+    {
+        "id": "IdDaMusica",
+        "name": "nomeDaMusica",
+        "artists": [
+            {
+                "name": "NomeArtista",
+                "url": "urlPerfilArtista"
+            },
+            {
+                ...Outros Artistas
+            }
+        ],
+        "album": {
+            "name": "NomeDoAlbum",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "urlImagemAlbum",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "urlImagemAlbum",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "urlImagemAlbum",
+                    "width": 64
+                }
+            ],
+            "url": "urlAlbum"
+        },
+        "duration": numberEmMilisegundos,
+        "popularity": number0-100,
+        "url": "urlMusica"
+    },
+    {
+        ...Outras Musicas
+    }
+   ]
+   ```
+
 - **GET `/me/saved-tracks`**: Músicas salvas na biblioteca do usuário.
+
+     Exemplo de resposta:
+  
+   ```json
+      [
+    {
+        "name": "nomeMusica",
+        "artists": [
+            {
+                "name": "DENNIS",
+                "url": "https://open.spotify.com/artist/6xlRSRMLgZbsSNd0BMobwy"
+            },
+            {
+                ...Outros Artistas
+            }
+        ],
+        "album": {
+            "name": "NomeAlbum",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "urlImagemAlbum",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "urlImagemAlbum",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "urlImagemAlbum",
+                    "width": 64
+                }
+            ],
+            "url": "urlAlbum"
+        },
+        "duration": numberEmMilisegundos,
+        "popularity": number0-100,
+        "url": "urlMusica"
+    },
+    {
+        ...Outras Musicas
+    }
+   ]
+   ```
+   
 - **GET `/me/recently-played`**: Últimas músicas reproduzidas.
+
+     Exemplo de resposta:
+  
+   ```json
+      {
+       "FALTA ESSE AQUI"
+      }
+   ```
+  
 - **GET `/me/recommendations`**: Recomendações personalizadas.
+
+     Exemplo de resposta:
+  
+   ```json
+   [
+    {
+        "id": "IdDaPlaylist",
+        "name": "nomeDaPlaylist",
+        "description": "descricaoDaPlaylist",
+        "images": [
+            {
+                "height": null,
+                "url": "urlImagemPlaylist",
+                "width": null
+            }
+        ],
+        "url": "urlPlaylist"
+    },
+    {
+        ...Outras Playlists
+    }
+   ]
+   ```
+   
 - **GET `/me/playlists`**: Playlists do usuário.
+
+     Exemplo de resposta:
+  
+   ```json
+   [
+    {
+        "id": "idDaPlaylist",
+        "name": "nomeDaPlaylist",
+        "description": "DescricaoDaPlaylist",
+        "images": [
+            {
+                "height": 640,
+                "url": "urlImagemPlaylist",
+                "width": 640
+            },
+            {
+                "height": 300,
+                "url": "urlImagemPlaylist",
+                "width": 300
+            },
+            {
+                "height": 60,
+                "url": "urlImagemPlaylist",
+                "width": 60
+            }
+        ],
+        "url": "urlPlaylist"
+    },
+    {
+        ...Outras Playlists
+    }
+   ]
+   ```
 
 ### Player de Músicas `/player`
 
 - **GET `/player/current-track`**: Dados da música atual.
+  
+     Exemplo de resposta:
+  
+   ```json
+   {
+    "name": "nomeMusicaAtual",
+    "artists": [
+        {
+            "name": "nomeArtista",
+            "url": "urlPerfilArtista"
+        },
+        {
+            ...Outros Artistas
+        }
+    ],
+    "album": {
+        "name": "nomeAlbum",
+        "images": [
+            {
+                "height": 640,
+                "url": "urlImagemAlbum",
+                "width": 640
+            },
+            {
+                "height": 300,
+                "url": "urlImagemAlbum",
+                "width": 300
+            },
+            {
+                "height": 64,
+                "url": "urlImagemAlbum",
+                "width": 64
+            }
+        ],
+        "url": "urlAlbum"
+    },
+    "duration_ms": numberEmMilisegundos,
+    "popularity": number0-100,
+    "url": "urlMusica",
+    "is_playing": boolean,
+    "progress_ms": numberEmMilisegundos
+   }
+   ```
+   
 - **GET `/player/play/:search`**: Reproduz a música fornecida.
+
+     Exemplo de resposta:
+  
+   ```json
+   {
+    status: 204
+   }
+   ```
 
 ### Pesquisa `/search`
 
 - **GET `/search/:type/:name`**: Busca no catálogo do Spotify.
   - `type`: track, artist, album
   - `name`: Sequência de palavras-chave
+ 
+     Exemplo de resposta:
+
+   `:type` = "artist"
+
+   ```json
+   {
+    "type": "artist",
+    "results": [
+        {
+            "id": "idDoArtista",
+            "name": "nomeDoArtista",
+            "followers": number,
+            "popularity": number0-100,
+            "images": [
+                "urlImagem1",
+                "urlImagem2",
+                "urlImagem3"
+            ],
+            "genres": [
+                "genero1",
+                "genero2",
+                ...
+            ],
+            "url": "urlPerfilArtista"
+        },
+        {
+            ...Outros Artistas Relacionados
+        }
+    ]
+   }
+   ```
+
+   `:type` = "track"
+
+  ```json
+   {
+    "type": "track",
+    "results": [
+        {
+            "id": "idMusica",
+            "name": "nomeMusica",
+            "artists": [
+                {
+                    "name": "nomeArtista",
+                    "url": "urlPerfilArtista"
+                }
+            ],
+            "album": {
+                "name": "A Morte do Autotune",
+                "images": [
+                    {
+                        "height": 640,
+                        "url": "urlImagemAlbum",
+                        "width": 640
+                    },
+                    {
+                        "height": 300,
+                        "url": "urlImagemAlbum",
+                        "width": 300
+                    },
+                    {
+                        "height": 64,
+                        "url": "urlImagemAlbum",
+                        "width": 64
+                    }
+                ],
+                "url": "urlAlbum"
+            },
+            "duration": numberEmMilisegundos,
+            "popularity": number0-100,
+            "url": "urlMusica"
+        },
+        {
+            ...Outras Musicas Relacionadas
+        }
+    ]
+   }
+  ```
+
+   `:type` = "album"
+
+  ```json
+   {
+    "type": "album",
+    "results": [
+        {
+            "id": "idAlbum",
+            "name": "nomeAlbum",
+            "images": [
+                {
+                    "height": 640,
+                    "url": "urlImagemAlbum",
+                    "width": 640
+                },
+                {
+                    "height": 300,
+                    "url": "urlImagemAlbum",
+                    "width": 300
+                },
+                {
+                    "height": 64,
+                    "url": "urlImagemAlbum",
+                    "width": 64
+                }
+            ],
+            "artists": [
+                {
+                    "name": "nomeArtista",
+                    "url": "urlPerfilArtista"
+                }
+                {
+                    ...Outros Artistas
+                }
+            ],
+            "url": "urlAlbum"
+        },
+        {
+            ...Outros Albuns Relacionados
+        }
+    ]
+   }
+  ```
 
 ### Artistas `/artists`
 
 - **GET `/artists/:id`**: Dados sobre o artista.
+
+     Exemplo de resposta:
+  
+   ```json
+   {
+    "name": "nomeDoArtista",
+    "genres": [
+        "genero1",
+        "genero2",
+        ...
+    ],
+    "followers": number,
+    "popularity": number0-100,
+    "images": [
+        {
+            "url": "urlImagem",
+            "height": 640,
+            "width": 640
+        },
+        {
+            ...outras imagens
+        },
+        
+    ],
+    "url": "perfilArtista",
+    "id": "idArtista"
+   }
+   ```
+   
 - **GET `/artists/:id/albums`**: Lista de álbuns do artista.
+
+     Exemplo de resposta:
+  
+   ```json
+   [
+    {
+        "id": "idAlbum",
+        "name": "nomeAlbum",
+        "release_date": "dataLancamento",
+        "total_tracks": number,
+        "images": [
+            {
+                "url": "urlImagem",
+                "height": 640,
+                "width": 640
+            },
+            {
+                ...outras imagens
+            }
+        ],
+        "url": "urlAlbum"
+    },
+   ]
+   ```
+   
 - **GET `/artists/:id/top-tracks`**: Top faixas do artista.
+
+     Exemplo de resposta:
+  
+   ```json
+   [
+    {
+        "id": "idMusica",
+        "name": "nomeMusica",
+        "artists": [
+            {
+                "name": "nomeArtista",
+                "url": "urlPerfilArtista"
+            }
+            {
+                ...Outros Artistas
+            }
+        ],
+        "album": {
+            "name": "nomeAlbum",
+            "images": [
+                {
+                    "url": "urlImagem",
+                    "height": 640,
+                    "width": 640
+                },
+                {
+                    ...outras imagens
+                }
+            ],
+            "url": "urlAlbum"
+        },
+        "duration": numberEmMilisegundos,
+        "popularity": number0-100,
+        "url": "urlMusica"
+    },
+    {
+        ...Outras Musicas
+    }
+   ]
+   ```
 
 ### Albuns `/albums`
 
 - **GET `/albums/:id`**: Dados sobre o álbum.
 
+     Exemplo de resposta:
+  
+   ```json
+   {
+    "name": "nomeAlbum",
+    "genre": [
+        "genero1"
+    ],
+    "artists": [
+        {
+            "id": "idArtista",
+            "name": "nomeArtista",
+            "url": "urlPerfilArtista"
+        },
+        {
+            ...Outros Artistas
+        }
+    ],
+    "release_date": "dataLancamento",
+    "total_tracks": number,
+    "tracks": [
+        {
+            "id": "idMusica",
+            "name": "nomeMusica",
+            "artists": [
+                {
+                    "id": "idArtista",
+                    "name": "nomeArtista",
+                    "url": "urlPerfilArtista"
+                }
+                {
+                    ...Outros Artistas
+                }
+            ],
+            "url": "urlMusica"
+        },
+        {
+            ...Outras Musicas
+        }
+    ],
+    "images": [
+        {
+            "url": "urlImagem",
+            "height": 640,
+            "width": 640
+        },
+        {
+            ...outras imagens
+        }
+    ],
+    "url": "urlAlbum",
+   }
+   ```
+   
 ---
 ![](public/src/images/Banners/Telas.png)
 
@@ -308,6 +864,8 @@ Na tela de álbum, o usuário pode visualizar informações detalhadas sobre um 
 ### Player
 
 O player de música exibe a faixa que o usuário está ouvindo em um dispositivo ativo no Spotify.
+
+*O player de músicas só está disponível na página da [Home](#home)*
 
 ![player](public/src/images/player.png)
 
