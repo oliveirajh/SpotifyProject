@@ -13,7 +13,7 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
 1. [URL da Aplicação](#url-da-aplicação)
 2. [Desafios Encontrados](#desafios-encontrados-durante-o-desenvolvimento)
 3. [Tecnologias Utilizadas](#tecnologias-utilizadas-no-projeto)
-4. [Estrutura de arquivos/pastas](#estrutura-de-arquivos-pastas)
+4. [Estrutura de arquivos e pastas](#estrutura-de-arquivos-e-pastas)
 5. [Pré-requisitos ](#pré-requisitos)
 6. [Instalação](#instalação)
 7. [Acessar o APP](#acessar-o-app)
@@ -25,6 +25,8 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
    - [Artistas `/artists`](#artistas-artists)
    - [Albuns `/albums`](#albuns-albums)
 9. [Telas (APP)](#telas-app)
+10. [Solução de problemas](#solução-de-problemas)
+      - [No available devices](#no-available-devices)
 
 ---
 ![](public/src/images/Banners/URL.png)
@@ -55,7 +57,7 @@ API desenvolvida para consumir dados da API do Spotify e integrá-los em uma apl
 ---
 ![](public/src/images/Banners/Estrutura.png)
 
-## Estrutura de arquivos/pastas
+## Estrutura de arquivos e pastas
 
 **API:**
 
@@ -269,24 +271,54 @@ Autenticação do usuário com OAuth 2.0.
 
 ### Login
 
+A tela de login permite ao usuário acessar o aplicativo utilizando sua conta do Spotify, por meio da autenticação OAuth 2.0.
+
 ![login](public/src/images/login.png)
 
 ### Home
+
+A tela inicial exibe informações relevantes e personalizadas sobre o perfil do usuário, com base nos dados da sua conta Spotify.
 
 ![home](public/src/images/home.png)
 
 ### Favoritos
 
+A tela de favoritos reúne as faixas, álbuns e artistas preferidos do usuário, facilitando o acesso rápido aos conteúdos.
+
 ![favoritos](public/src/images/favoritos.png)
 
 ### Search
+
+Na tela de busca, o usuário pode encontrar resultados de pesquisa com base em palavras-chave e escolhendo o tipo de pesquisa como: track (Faixa), album (Album) ou artist (Artista), explorando novos conteúdos no Spotify.
 
 ![search](public/src/images/gifs/Search.gif)
 
 ### Artista
 
+A tela do artista oferece detalhes sobre um artista específico, incluindo principais faixas e álbuns.
+
 ![artista](public/src/images/artista.png)
 
 ### Album
 
+Na tela de álbum, o usuário pode visualizar informações detalhadas sobre um álbum, como a lista de faixas e os créditos.
+
 ![album](public/src/images/Album.png)
+
+### Player
+
+O player de música exibe a faixa que o usuário está ouvindo em um dispositivo ativo no Spotify.
+
+![player](public/src/images/player.png)
+
+## Solução de problemas
+
+### No Available Devices
+
+![player](public/src/images/device_error1.png)
+
+![player](public/src/images/device_error2.png)
+
+⚔️ **Erro:** Nenhum dispositivo disponível foi encontrado para reprodução.
+
+🛡 **Como resolver:** Inicie a reprodução de uma faixa no Spotify em algum dispositivo ou diretamente no [site do Spotify](https://open.spotify.com/search).
