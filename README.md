@@ -1,4 +1,4 @@
-# Spotify API 🎵
+# Spotify API e Clone Spotify
 
 ![banner](public/src/images/sprintbanner.png)
 
